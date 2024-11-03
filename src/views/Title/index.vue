@@ -3,7 +3,17 @@
 </script>
 
 <template>
-    <div>
-        我是标题（校徽，题目，时间）
+    <div class="head">
+
     </div>
 </template>
+
+<style>
+.head{
+    width: 100%;                     /* 横向占满整个宽度 */
+    height: 12%;                   /* 高度为视口高度 */
+    background-image: url('/src/assets/images/header.png'); 
+    background-size: cover;         
+    background-position: center;    
+}
+</style>

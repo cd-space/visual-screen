@@ -4,12 +4,15 @@ import Title from '../Title/index.vue'
 </script>
 
 <template>
+
     <div class="box">
-        <div class="test-title"> 
-            <Title></Title>
-        </div>
-        <div class="test-content">
-            <Content></Content>
+        <div class="parent ">
+            <div class="test-title">
+                <Title></Title>
+            </div>
+            <div class="test-content">
+                <Content></Content>
+            </div>
         </div>
     </div>
 
@@ -18,13 +21,17 @@ import Title from '../Title/index.vue'
 <style>
 .box {
     padding: 10px;            
-    background-color: #ADD8E6; 
-    width: 100vw;              
-    height: 100vh;            
+    background-color: white; 
+    width: 100%;              
+    height: 100%;            
     box-sizing: border-box;    
 }
 
-.test-title {
+.parent {
+    height: 100%; /* 使父元素占满整个视口高度 */
+}
+
+/* .test-title {
     width: 100%;          
     height: 12%;         
     background-color: black; 
@@ -33,6 +40,6 @@ import Title from '../Title/index.vue'
     width: 100%;          
     height: 88%;         
     background-color: red; 
-}
+} */
 
 </style>
