@@ -1,10 +1,10 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
+  margin: 0; /* 去掉左右外边距 */
   padding: 2rem;
   font-weight: normal;
+  width: 100%; /* 使宽度占满整个屏幕 */
 }
 
 a,
