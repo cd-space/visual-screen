@@ -12,6 +12,7 @@ import Title from '../Title/index.vue'
             <Content></Content>
         </div>
     </div>
+</template>
 <style>
 .box {
     padding: 10px;            
