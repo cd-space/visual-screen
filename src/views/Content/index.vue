@@ -10,11 +10,11 @@
 
 <style>
 .content{
-    width: 100%;                     /* 横向占满整个宽度 */
-    height: 100%;                   /* 高度为视口高度 */
-    background-image: url('/src/assets/images/panel.png'); /* 背景图片 */
-    background-size: cover;          /* 让背景图片覆盖整个区域 */
-    background-position: center;      /* 背景图片居中显示 */
+    width: 100%;                   
+    height: 100%;                  
+    /* background-image: url('/src/assets/images/panel.png'); 
+    background-size: cover;          
+    background-position: center;     */
     padding:10px
 }
 
