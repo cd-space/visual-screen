@@ -4,7 +4,7 @@ import Title from '../Title/index.vue'
 </script>
 
 <template>
-    <div class="box">
+    <div class="box_main">
         <div class="test-title">
             <Title></Title>
         </div>
@@ -14,7 +14,7 @@ import Title from '../Title/index.vue'
     </div>
 </template>
 <style>
-.box {
+.box_main {
     padding: 10px;            
     background-color: white; 
     width: 100%;              
