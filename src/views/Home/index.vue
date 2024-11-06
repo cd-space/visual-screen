@@ -13,27 +13,26 @@ import Title from '../Title/index.vue'
         </div>
     </div>
 </template>
-<style>
-.box_main {
-    padding: 10px;            
-    background-color: white; 
+<style scoped>
+.box_main {       
     width: 100%;              
     height: 100%;            
     box-sizing: border-box; 
-    background-image: url('/src/assets/images/bg-main.png'); /* 背景图片 */
-    background-size: cover;          /* 让背景图片覆盖整个区域 */
-    background-position: center;      /* 背景图片居中显示 */   
+    background-image: url('/src/assets/images/bg-main.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;   
 }
 
 
  .test-title {
     width: 100%;          
-    height: 7%;         
+    height: 7vh;         
     /* background-color: black;  */
 }
 .test-content {
     width: 100%;          
-    height: 93%;         
+    height: 93vh;         
     /* background-color: red;  */
 }
 

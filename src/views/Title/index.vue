@@ -1,26 +1,36 @@
-<script setup>
-
-</script>
-
 <template>
     <div class="head">
         <div class="box box1">
-            <div class="pic-xiaohui">
-                <img src="/src/assets/images/xiaohui.png" alt="校徽">
-            </div>
-            <div class="pic-yuanhui">
-                <img src="/src/assets/images/yuanhui.png" alt="院徽">
-            </div>
+            <el-row :gutter="20" justify="center" >
+                <el-col :span="3" :offset="6">
+
+                    <img src="/src/assets/images/xiaohui.png" alt="校徽">
+
+                </el-col>
+                <el-col :span="3">
+
+                    <img src="/src/assets/images/yuanhui.png" alt="院徽">
+
+                </el-col>
+            </el-row>
         </div>
-        <div class="box box2">Box 2</div>
-        <div class="box box3">Box 3</div>
+        <div class="box box2"><span class="title">“千名学子百企行”就业实践活动</span></div>
+        <div class="box box3">
+            <Time></Time>
+        </div>
     </div>
 </template>
 
-<style>
+<script setup>
+import Time from './components/Time.vue'
+
+
+</script>
+
+<style scoped>
 .head {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 7vh;
     display: flex;
 }
 
@@ -33,38 +43,50 @@
 
 .box1 {
     /* background-color: rgba(255, 0, 0, 0.5); */
-    flex: 2;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .box2 {
-    background-color: rgba(0, 255, 0, 0.3);
-    flex: 3;
+    /* background-color: rgba(0, 255, 0, 0.3); */
+    flex: 1;
     text-align: center;
 }
 
 .box3 {
-    background-color: rgba(0, 0, 255, 0.7);
-    flex: 2;
-}
-.box img {
-      width: 30%; 
-      height: 30%;  
-      object-fit: contain;  
-      
+    /* background-color: rgba(0, 0, 255, 0.7); */
+    flex: 1;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
 
-.pic-xiaohui{
-    width: 14%;
-    height: 14%;
-    position: absolute;
-    top: 19px;
-    left: 110px;
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
 }
-.pic-yuanhui{
-    width: 14%;
-    height: 14%;
-    position: absolute;
-    top: 19px;
-    left: 170px;
+
+.el-row {
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    align-items: center; 
+}
+
+.el-col {
+    height:68%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.title{
+    font-size: 40px;
+    /* transform: translateY(-10px); */
+    position: relative;
+    top: -27px;  /* 通过调整top的负值来让文字上移 */
 }
 </style>
