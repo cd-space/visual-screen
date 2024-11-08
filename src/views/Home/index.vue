@@ -15,9 +15,9 @@ import Title from '../Title/index.vue'
 </template>
 <style scoped>
 .box_main {       
-    width: 100%;              
-    height: 100%;            
-    box-sizing: border-box; 
+    width: 100vw;              
+    height: 100vh;            
+    /* box-sizing: border-box;  */
     background-image: url('/src/assets/images/bg-main.png');
     background-size: cover;
     background-position: center;
@@ -26,14 +26,12 @@ import Title from '../Title/index.vue'
 
 
  .test-title {
-    width: 100%;          
+    width: 100vw;          
     height: 7vh;         
-    /* background-color: black;  */
 }
 .test-content {
-    width: 100%;          
+    width: 100vw;          
     height: 93vh;         
-    /* background-color: red;  */
 }
 
 </style>

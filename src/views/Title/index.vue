@@ -2,12 +2,12 @@
     <div class="head">
         <div class="box box1">
             <el-row :gutter="20" justify="center" >
-                <el-col :span="3" :offset="6">
+                <el-col :span="3" :offset="6" class="badge-col">
 
                     <img src="/src/assets/images/xiaohui.png" alt="校徽">
 
                 </el-col>
-                <el-col :span="3">
+                <el-col :span="3" class="badge-col">
 
                     <img src="/src/assets/images/yuanhui.png" alt="院徽">
 
@@ -35,28 +35,25 @@ import Time from './components/Time.vue'
 }
 
 .box {
-    height: 100%;
-    /* text-align: center; */
+    height: 7vh;
+    width: 100vw;
     color: white;
     line-height: 100px;
 }
 
 .box1 {
-    /* background-color: rgba(255, 0, 0, 0.5); */
     flex: 1;
-    height: 100%;
+    height: 7vh;
     display: flex;
     align-items: center;
 }
 
 .box2 {
-    /* background-color: rgba(0, 255, 0, 0.3); */
     flex: 1;
     text-align: center;
 }
 
 .box3 {
-    /* background-color: rgba(0, 0, 255, 0.7); */
     flex: 1;
     display: flex; 
     align-items: center; 
@@ -64,8 +61,8 @@ import Time from './components/Time.vue'
 }
 
 .box img {
-    width: 100%;
-    height: 100%;
+    width: 5vw;
+    height: 5vh;
     object-fit: contain;
 
 }
@@ -85,8 +82,12 @@ import Time from './components/Time.vue'
 }
 .title{
     font-size: 40px;
-    /* transform: translateY(-10px); */
+    font-weight: bold;
     position: relative;
     top: -27px;  /* 通过调整top的负值来让文字上移 */
+}
+.badge-col img {
+    position: relative;
+    top: -5px; /* 负值向上移动 */
 }
 </style>
