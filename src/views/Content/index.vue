@@ -2,12 +2,22 @@
 import CFLC from '@/views/Content/components/cflc.vue'
 import CYRS from '@/views/Content/components/cyrs.vue'
 import ZYNJFB from '@/views/Content/components/zynjfb.vue'
+import ConList from './components/ConList.vue';
+import StuList from './components/StuList.vue';
 </script>
 
 <template>
+
+
     <div class="content">
 
-
+        <div style="width: 40vw;height:40vh;">
+            <bv-border-box name="border9">
+                <ConList></ConList>
+            </bv-border-box>
+        </div>
+        <ConList></ConList>
+        <StuList></StuList>
         <el-row :gutter="20">
             <el-col :span="4">
                 <div class="box">
@@ -35,6 +45,7 @@ import ZYNJFB from '@/views/Content/components/zynjfb.vue'
                 </div>
             </el-col>
         </el-row>
+
     </div>
 </template>
 
@@ -60,5 +71,11 @@ import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 
 
 
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 10px
 }
 </style>

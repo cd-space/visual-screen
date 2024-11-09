@@ -4,7 +4,7 @@ import Title from '../Title/index.vue'
 </script>
 
 <template>
-    <div class="box">
+    <div class="box_main">
         <div class="test-title">
             <Title></Title>
         </div>
@@ -13,25 +13,25 @@ import Title from '../Title/index.vue'
         </div>
     </div>
 </template>
-<style>
-.box {
-    padding: 10px;            
-    background-color: white; 
-    width: 100%;              
-    height: 100%;            
-    box-sizing: border-box;    
+<style scoped>
+.box_main {
+    width: 100vw;
+    height: 100vh;
+    /* box-sizing: border-box;  */
+    background-image: url('/src/assets/images/bg-main.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
- .test-title {
-    width: 100%;          
-    height: 12%;         
-    /* background-color: black;  */
+.test-title {
+    width: 100vw;
+    height: 7vh;
 }
+
 .test-content {
-    width: 100%;          
-    height: 88%;         
-    /* background-color: red;  */
+    width: 100vw;
+    height: 93vh;
 }
-
 </style>
