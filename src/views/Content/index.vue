@@ -6,17 +6,7 @@ import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 
 <template>
     <div class="content">
-        <el-row>
-            <el-col :span="24">
-                <div style="height: 150px; background-color: blue;">1</div>
-            </el-col>
-        </el-row>
 
-        <el-row>
-            <el-col :span="24">
-                <div style="height: 200px; background-color: aquamarine;">1</div>
-            </el-col>
-        </el-row>
 
         <el-row :gutter="20">
             <el-col :span="4">
