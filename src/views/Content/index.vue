@@ -1,5 +1,7 @@
 <script setup>
-import BYQX from '@/views/Content/components/byqx.vue'
+import CFLC from '@/views/Content/components/cflc.vue'
+import CYRS from '@/views/Content/components/cyrs.vue'
+import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 </script>
 
 <template>
@@ -18,20 +20,28 @@ import BYQX from '@/views/Content/components/byqx.vue'
 
         <el-row :gutter="20">
             <el-col :span="4">
-                <div class="box">1</div>
-            </el-col>
-            <el-col :span="5">
-                <div class="box">2</div>
+                <div class="box">
+                    1
+                </div>
             </el-col>
             <el-col :span="6">
-                <div class="box">3</div>
-            </el-col>
-            <el-col :span="5">
-                <div class="box">4</div>
+                <div class="box">
+                    <CFLC></CFLC>
+                </div>
             </el-col>
             <el-col :span="4">
                 <div class="box">
-                    <BYQX></BYQX>
+                    <CYRS></CYRS>
+                </div>
+            </el-col>
+            <el-col :span="6">
+                <div class="box">
+                    <ZYNJFB></ZYNJFB>
+                </div>
+            </el-col>
+            <el-col :span="4">
+                <div class="box">
+                    5
                 </div>
             </el-col>
         </el-row>
