@@ -10,13 +10,13 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "bin-datav": "^0.2.0",
     "echarts": "^5.5.1",
     "echarts-gl": "^2.0.9",
     "element-plus": "^2.8.7",
     "pinia": "^2.2.4",
     "vue": "^3.5.12",
     "vue-echarts": "^7.0.3",
-    "bin-datav": "^0.2.0",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
