@@ -19,6 +19,9 @@ export default {
         const option = {
           title: {
             text: '参访里程',
+            textStyle: {
+              color: "rgba(255, 255, 255, 1)"
+            }
           },
           tooltip: {},
           xAxis: {
@@ -27,17 +30,66 @@ export default {
             data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
           },
           series: [
             {
               data: [10, 20, 40, 60, 80, 100, 120, 140, 160, 180],
               type: 'line',
-              areaStyle: {}
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#27626d' },   // 顶部颜色
+                  { offset: 1, color: '#03051a' },  // 底部颜色
+                ]),
+              },
+              itemStyle: {
+                color: '#73C9E6',  // 线条颜色
+              },
+              emphasis: {
+                itemStyle: {
+                  color: '#73C9E6',
+                  shadowBlur: 20,
+                  shadowColor: '#73C9E6',
+                },
+              },
+              markPoint: {
+                symbol: 'circle',
+                symbolSize: 10,
+                itemStyle: {
+                  color: '#73C9E6',
+                  shadowBlur: 20,
+                  shadowColor: '#73C9E6',
+                },
+                data: [
+                  { type: 'max', name: 'Max Value' },
+                  { type: 'min', name: 'Min Value' },
+                ],
+              },
+              animation: true,
+              animationEasing: 'linear',
+              animationDurationUpdate: 2000, // 控制动画速度
             },
           ],
         };
         myChart.setOption(option);
+
+        // 动态左右移动数据点
+        let index = 0;
+        setInterval(() => {
+          index = (index + 1) % option.series[0].data.length;
+          myChart.dispatchAction({
+            type: 'highlight',
+            seriesIndex: 0,
+            dataIndex: index,
+          });
+          setTimeout(() => {
+            myChart.dispatchAction({
+              type: 'downplay',
+              seriesIndex: 0,
+              dataIndex: index,
+            });
+          }, 1000); // 延迟使得发光效果短暂展示
+        }, 1500);
       }
     };
 

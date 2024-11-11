@@ -19,13 +19,16 @@ export default {
         const option = {
           title: {
             text: '专业及年级分布',
+            textStyle: {
+              color: "rgba(255, 255, 255, 1)"
+            }
 
           },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
-              type: 'shadow'
-            }
+              type: 'shadow',
+            },
           },
           legend: {
             orient: 'horizontal',
@@ -40,30 +43,69 @@ export default {
             scroll: true,
           },
           dataset: {
+            dimensions: ['xAxis', 'A', 'B', 'C', 'D'],
             source: [
-              ['xAxis', 'A', 'B', 'C', 'D'],
               ['2021', 20, 40, 60, 80],
               ['2022', 10, 30, 50, 70],
               ['2023', 10, 20, 30, 40],
-              ['2024', 20, 50, 70, 90]
-            ]
+              ['2024', 20, 50, 70, 90],
+            ],
           },
           xAxis: {
-            type: 'category'
+            type: 'category',
           },
           yAxis: {
-
+            show: false, // 隐藏 y 轴
           },
           series: [
             {
               type: 'bar',
+              itemStyle: {
+                color: '#004abf',
+              },
+              label: {
+                show: true,
+                position: 'top', // 标签显示在条形图的顶部
+
+                fontSize: 12, // 设置字体大小
+              },
             },
             {
               type: 'bar',
+              itemStyle: {
+                color: '#54edd2',
+              },
+              label: {
+                show: true,
+                position: 'top', // 标签显示在条形图的顶部
+
+                fontSize: 12, // 设置字体大小
+              },
             },
             {
               type: 'bar',
-            }
+              itemStyle: {
+                color: '#56e8bd',
+              },
+              label: {
+                show: true,
+                position: 'top', // 标签显示在条形图的顶部
+
+                fontSize: 12, // 设置字体大小
+              },
+            },
+            {
+              type: 'bar',
+              itemStyle: {
+                color: '#152772',
+              },
+              label: {
+                show: true,
+                position: 'top', // 标签显示在条形图的顶部
+
+                fontSize: 12, // 设置字体大小
+              },
+            },
           ],
         };
         myChart.setOption(option);
