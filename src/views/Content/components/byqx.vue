@@ -1,64 +1,189 @@
 <template>
-  <div id="chart-panel" class="chart-panel"></div>
+  <div ref="chart" style="width: 100%; height: 200px;"></div>
 </template>
 
 <script>
-import * as d3 from 'd3';
+import * as echarts from 'echarts';
+import 'echarts-gl';
+import { getPie3D, getParametricEquation } from '@/utils/chart.js';
+
+const color = ['#005aff', '#f8b551'];
 
 export default {
-  name: 'DonutChart',
+  name: 'Chart3D',
+  data() {
+    return {
+      optionData: [
+        { name: '考研', value: 176 },
+        { name: '就业', value: 288 }
+      ],
+      statusChart: null,
+      option: {}
+    };
+  },
+  created() {
+    this.setLabel();
+  },
   mounted() {
-    this.createDonutChart();
+    this.initChart();
+
+    window.addEventListener('resize', this.changeSize);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.changeSize);
+    if (this.statusChart) {
+      this.statusChart.dispose();
+    }
   },
   methods: {
-    createDonutChart() {
-      // 数据定义
-      const salesData = [
-        { label: 'Basic', color: '#2f7ed8' },
-        { label: 'Plus', color: '#0d233a' },
-        { label: 'Lite', color: '#8bbc21' },
-        { label: 'Elite', color: '#910000' },
-        { label: 'Delux', color: '#1aadce' }
-      ];
-
-      // 容器尺寸
-      const width = 400, height = 500;
-
-      // 创建SVG画布
-      const svg = d3.select('#chart-panel').append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .append('g').attr('id', 'circleDonut');
-
-      // 调用Donut3D绘图函数
-      this.drawDonut3D(svg, this.randomData(salesData), 150, 150, 130, 100, 30, 0);
+    setLabel() {
+      this.optionData.forEach((item, index) => {
+        item.itemStyle = { color: color[index] };
+        item.label = {
+          normal: {
+            show: true,
+            color: color[index],
+            formatter: ['{b|{b}}', '{c|{c}}{b|人}', '{d|{d}%}'].join('\n'),
+            rich: {
+              b: { color: '#fff', lineHeight: 25, align: 'left' },
+              c: {
+                fontSize: 22,
+                color: '#fff',
+                textShadowColor: '#1c90a6',
+                textShadowOffsetX: 0,
+                textShadowOffsetY: 2,
+                textShadowBlur: 5
+              },
+              d: { color: color[index], align: 'left' }
+            }
+          }
+        };
+        item.labelLine = {
+          normal: {
+            lineStyle: { width: 1, color: 'rgba(255,255,255,0.7)' }
+          }
+        };
+      });
     },
+    initChart() {
+      this.statusChart = echarts.init(this.$refs.chart);
+      this.option = getPie3D(this.optionData, 0.8, 240, 28, 26, 0.5);
+      this.statusChart.setOption(this.option);
 
-    randomData(salesData) {
-      // 生成随机数据
-      return salesData.map(d => ({
-        label: d.label,
-        value: 1000 * Math.random(),
-        color: d.color
-      }));
+      this.option.series.push({
+        name: '毕业去向',
+        type: 'pie',
+        label: { opacity: 1, fontSize: 13, lineHeight: 20 },
+        startAngle: -40,
+        clockwise: false,
+        radius: ['20%', '50%'],
+        center: ['50%', '50%'],
+        data: this.optionData,
+        itemStyle: { opacity: 0 }
+      });
+      this.statusChart.setOption(this.option);
+
+      this.bindListen(this.statusChart);
     },
+    bindListen(myChart, optionName = 'option') {
+      let selectedIndex = '';
+      let hoveredIndex = '';
 
-    drawDonut3D(svg, data, cx, cy, r1, r0, h, a) {
-      // 确保Donut3D函数已经定义或引入
-      if (typeof Donut3D !== 'undefined') {
-        Donut3D.draw('circleDonut', data, cx, cy, r1, r0, h, a);
-      } else {
-        console.error('Donut3D is not loaded');
-      }
+      myChart.on('click', (params) => {
+        const isSelected = !this[optionName].series[params.seriesIndex].pieStatus.selected;
+        const k = this[optionName].series[params.seriesIndex].pieStatus.k;
+        const startRatio = this[optionName].series[params.seriesIndex].pieData.startRatio;
+        const endRatio = this[optionName].series[params.seriesIndex].pieData.endRatio;
+
+        if (selectedIndex !== '' && selectedIndex !== params.seriesIndex) {
+          this[optionName].series[selectedIndex].parametricEquation = getParametricEquation(
+            this[optionName].series[selectedIndex].pieData.startRatio,
+            this[optionName].series[selectedIndex].pieData.endRatio,
+            false,
+            false,
+            k,
+            this[optionName].series[selectedIndex].pieData.value
+          );
+          this[optionName].series[selectedIndex].pieStatus.selected = false;
+        }
+
+        this[optionName].series[params.seriesIndex].parametricEquation = getParametricEquation(
+          startRatio,
+          endRatio,
+          isSelected,
+          false,
+          k,
+          this[optionName].series[params.seriesIndex].pieData.value
+        );
+        this[optionName].series[params.seriesIndex].pieStatus.selected = isSelected;
+        selectedIndex = isSelected ? params.seriesIndex : null;
+        myChart.setOption(this[optionName]);
+      });
+
+      myChart.on('mouseover', (params) => {
+        if (hoveredIndex === params.seriesIndex) return;
+        if (hoveredIndex !== '') {
+          this.updateHoverEffect(hoveredIndex, false, optionName);
+          hoveredIndex = '';
+        }
+        if (params.seriesName !== 'mouseoutSeries' && params.seriesName !== 'pie2d') {
+          this.updateHoverEffect(params.seriesIndex, true, optionName, 60);
+          hoveredIndex = params.seriesIndex;
+        }
+        myChart.setOption(this[optionName]);
+      });
+
+      myChart.on('globalout', () => {
+        if (hoveredIndex !== '') {
+          this.updateHoverEffect(hoveredIndex, false, optionName);
+          hoveredIndex = '';
+        }
+        myChart.setOption(this[optionName]);
+      });
+    },
+    updateHoverEffect(index, isHovered, optionName, hoverValue = 0) {
+      const series = this[optionName].series[index];
+      const { startRatio, endRatio, value } = series.pieData;
+      const { selected, k } = series.pieStatus;
+      series.parametricEquation = getParametricEquation(
+        startRatio, endRatio, selected, isHovered, k, value + hoverValue
+      );
+      series.pieStatus.hovered = isHovered;
+    },
+    changeSize() {
+      this.statusChart.resize();
     }
   }
 };
 </script>
 
 <style scoped>
-.chart-panel {
-  /* 自定义样式，确保容器有合适的大小 */
+/* 自定义样式 */
+</style>
+
+<style scoped>
+.chart-container {
+  position: relative;
   width: 100%;
   height: 100%;
+}
+
+.chart,
+.bg {
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  z-index: -1;
+  width: 180px;
+  height: 73px;
+  background: no-repeat center;
+  background-image: url('https://ks3-cn-beijing.ksyun.com/sxjg-elevator/datav-platform-2.0/images/chart_opacity_bg.png');
+  background-size: 100% 100%;
+  transform: translateX(-50%);
 }
 </style>

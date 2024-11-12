@@ -1,7 +1,8 @@
 <script setup>
-import CFLC from '@/views/Content/components/cflc.vue'
+import LJSL from '@/views/Content/components/ljsl.vue'
 import BYQX from '@/views/Content/components/byqx.vue'
 import CYRS from '@/views/Content/components/cyrs.vue'
+import CFLC from '@/views/Content/components/cflc.vue'
 import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 import ConList from './components/ConList.vue';
 import StuList from './components/StuList.vue';
@@ -39,7 +40,7 @@ import StuList from './components/StuList.vue';
             <el-row :gutter="20">
                 <el-col :span="4">
                     <div class="box">
-                        <BYQX></BYQX>
+                        <LJSL></LJSL>
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -59,7 +60,7 @@ import StuList from './components/StuList.vue';
                 </el-col>
                 <el-col :span="4">
                     <div class="box">
-                        5
+                        <BYQX></BYQX>
                     </div>
                 </el-col>
             </el-row>
