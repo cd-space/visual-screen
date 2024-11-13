@@ -6,6 +6,8 @@ import CFLC from '@/views/Content/components/cflc.vue'
 import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 import ConList from './components/ConList.vue';
 import StuList from './components/StuList.vue';
+import VideoPlayer from './components/VideoPlayer.vue'
+
 </script>
 
 <template>
@@ -13,17 +15,22 @@ import StuList from './components/StuList.vue';
 
     <div class="content">
         <div class="middle">
+            <el-row :gutter="10">
+                <el-col :span="24">
+                    企业logo
+                </el-col>
+            </el-row>
             <el-row :gutter="20">
                 <el-col :span="8">
-                    <div style="width: 40vw;height:40vh;">
-                        <bv-border-box name="border9">
+                    <div>
+                        <!-- <bv-border-box name="border9"> -->
                             <ConList></ConList>
-                        </bv-border-box>
+                        <!-- </bv-border-box> -->
                     </div>
                 </el-col>
                 <el-col :span="8">
-                    <div>
-                        <ConList></ConList>
+                    <div class="video-player">
+                        <VideoPlayer></VideoPlayer>
                     </div>
                 </el-col>
                 <el-col :span="8">
@@ -70,6 +77,9 @@ import StuList from './components/StuList.vue';
 
 
 <style scoped>
+.video-player{
+    height: 300px;
+}
 .content {
     width: 100%;
     /* 横向占满整个宽度 */

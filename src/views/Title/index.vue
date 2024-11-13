@@ -1,5 +1,6 @@
 <template>
     <div class="head">
+        
         <div class="box box1">
             <el-row :gutter="20" justify="center">
                 <el-col :span="3" :offset="6" class="badge-col">
