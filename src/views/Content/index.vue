@@ -23,9 +23,9 @@ import VideoPlayer from './components/VideoPlayer.vue'
             <el-row :gutter="20">
                 <el-col :span="8">
                     <div>
-                        <!-- <bv-border-box name="border9"> -->
+                        <bv-border-box name="border9">
                             <ConList></ConList>
-                        <!-- </bv-border-box> -->
+                        </bv-border-box>
                     </div>
                 </el-col>
                 <el-col :span="8">
@@ -72,6 +72,7 @@ import VideoPlayer from './components/VideoPlayer.vue'
                 </el-col>
             </el-row>
         </div>
+        
     </div>
 </template>
 
@@ -82,15 +83,10 @@ import VideoPlayer from './components/VideoPlayer.vue'
 }
 .content {
     width: 100%;
-    /* 横向占满整个宽度 */
     height: 100%;
-    /* 高度为视口高度 */
     background-image: url('/src/assets/images/panel.png');
-    /* 背景图片 */
     background-size: cover;
-    /* 让背景图片覆盖整个区域 */
     background-position: center;
-    /* 背景图片居中显示 */
     padding: 10px
 }
 
