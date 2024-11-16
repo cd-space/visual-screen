@@ -7,6 +7,8 @@ import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 import ConList from './components/ConList.vue';
 import StuList from './components/StuList.vue';
 import VideoPlayer from './components/VideoPlayer.vue'
+import ComCarousel from './components/ComCarousel.vue'
+import ConCar1 from './components/ConCar1.vue'
 
 </script>
 
@@ -17,10 +19,11 @@ import VideoPlayer from './components/VideoPlayer.vue'
         <div class="middle">
             <el-row :gutter="10">
                 <el-col :span="24">
-                    企业logo
+                    <!-- <ComCarousel></ComCarousel> -->
+                     <ConCar1></ConCar1>
                 </el-col>
             </el-row>
-            <el-row :gutter="20">
+            <!-- <el-row :gutter="20">
                 <el-col :span="8">
                     <div>
                         <bv-border-box name="border9">
@@ -38,11 +41,11 @@ import VideoPlayer from './components/VideoPlayer.vue'
                         <StuList></StuList>
                     </div>
                 </el-col>
-            </el-row>
+            </el-row> -->
 
         </div>
 
-
+<!-- 
         <div class="footer">
             <el-row :gutter="20">
                 <el-col :span="4">
@@ -71,7 +74,7 @@ import VideoPlayer from './components/VideoPlayer.vue'
                     </div>
                 </el-col>
             </el-row>
-        </div>
+        </div> -->
         
     </div>
 </template>
