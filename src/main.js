@@ -14,6 +14,7 @@ import 'element-plus/dist/index.css';
 import { BorderBox, ScrollTable } from 'bin-datav'
 import 'bin-datav/lib/styles/index.css'
 
+
 const app = createApp(App)
 
 app.use(ElementPlus);

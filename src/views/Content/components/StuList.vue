@@ -1,6 +1,6 @@
 <template>
     <div flex="main:center">
-        <bv-scroll-table :config="config" style="width: 500px; height: 200px;"></bv-scroll-table>
+        <bv-scroll-table :config="config" ></bv-scroll-table>
     </div>
 </template>
 
@@ -30,4 +30,6 @@ const config = reactive({
 
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
