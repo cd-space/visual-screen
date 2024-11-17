@@ -13,8 +13,11 @@ export default {
     let myChart = null;
 
     // 初始化图表
-    const initChart = () => {
+    const initChart = async () => {
       if (chart.value) {
+        const response = await fetch('/path/to/data.json'); // 请根据实际路径替换
+        const jsonData = await response.json();
+
         myChart = echarts.init(chart.value);
         const option = {
           title: {
@@ -24,33 +27,28 @@ export default {
             }
           },
           tooltip: {},
+          dataset: {
+            source: jsonData.source  // 直接使用 source 数据
+          },
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
           },
           yAxis: {
             type: 'value',
           },
           series: [
             {
-              data: [10, 20, 40, 60, 80, 100, 120, 140, 160, 180],
               type: 'line',
+              encode: { x: 'month', y: 'distance' },
               areaStyle: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: '#27626d' },   // 顶部颜色
-                  { offset: 1, color: '#03051a' },  // 底部颜色
+                  { offset: 0, color: '#27626d' },
+                  { offset: 1, color: '#03051a' },
                 ]),
               },
               itemStyle: {
-                color: '#73C9E6',  // 线条颜色
-              },
-              emphasis: {
-                itemStyle: {
-                  color: '#73C9E6',
-                  shadowBlur: 20,
-                  shadowColor: '#73C9E6',
-                },
+                color: '#73C9E6',
               },
               markPoint: {
                 symbol: 'circle',
@@ -67,29 +65,11 @@ export default {
               },
               animation: true,
               animationEasing: 'linear',
-              animationDurationUpdate: 2000, // 控制动画速度
+              animationDurationUpdate: 2000,
             },
           ],
         };
         myChart.setOption(option);
-
-        // 动态左右移动数据点
-        let index = 0;
-        setInterval(() => {
-          index = (index + 1) % option.series[0].data.length;
-          myChart.dispatchAction({
-            type: 'highlight',
-            seriesIndex: 0,
-            dataIndex: index,
-          });
-          setTimeout(() => {
-            myChart.dispatchAction({
-              type: 'downplay',
-              seriesIndex: 0,
-              dataIndex: index,
-            });
-          }, 1000); // 延迟使得发光效果短暂展示
-        }, 1500);
       }
     };
 
