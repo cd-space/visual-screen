@@ -21,6 +21,7 @@
 
 <script setup>
 import Time from './components/Time.vue'
+import Time1 from './components/Time1.vue'
 
 
 </script>
