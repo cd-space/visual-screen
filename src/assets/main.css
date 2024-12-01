@@ -2,7 +2,7 @@
 
 #app {
   margin: 0; /* 去掉左右外边距 */
-  padding: 2rem;
+  padding: 0;
   font-weight: normal;
   width: 100%; /* 使宽度占满整个屏幕 */
   height: 100%;

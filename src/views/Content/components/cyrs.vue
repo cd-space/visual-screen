@@ -1,4 +1,3 @@
-<!--看好了，我只演示一遍-->
 <template>
   <div ref="chart" style="width: 100%; height: 200px;"></div>
 </template>
@@ -64,7 +63,9 @@ export default {
             {
               type: 'bar',
               data: [100, 80, 20],
-              barWidth: '40%',
+
+              barWidth: '30%', // 设置条形图宽度
+              barCategoryGap: '10%', // 调整分类间条形的间距
               itemStyle: {
                 color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
                   { offset: 0, color: '#00348b' },
@@ -73,7 +74,7 @@ export default {
               },
               label: {
                 show: true,
-                position: 'top', // 显示在条形图上方
+                position: [5, -15], // [x, y] 设置绝对偏移量
                 formatter: (params) => {
                   const icon = params.dataIndex === 1 ? '👦' : '👧';
                   const labelNames = ['总人数', '男生', '女生'];
