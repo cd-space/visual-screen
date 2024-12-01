@@ -72,22 +72,18 @@ onMounted(() => {
 
 .badge-link {
   margin: 0 20px;
-  /* 每个徽章的间距 */
   display: inline-block;
   text-decoration: none;
 }
 
 .badge-img {
   width: 50px;
-  /* 调整徽章大小 */
   height: 50px;
   object-fit: contain;
   transition: transform 0.2s ease;
-  /* 添加交互效果 */
 }
 
 .badge-img:hover {
   transform: scale(1.1);
-  /* 鼠标悬停放大 */
 }
 </style>
