@@ -17,12 +17,12 @@ import ConCar1 from './components/ConCar1.vue'
 
     <div class="content">
         <div class="middle">
-            <el-row :gutter="10">
+            <!--     <el-row :gutter="10">
                 <el-col :span="24">
-                    <!-- <ComCarousel></ComCarousel> -->
+                     <ComCarousel></ComCarousel> 
                      <ConCar1></ConCar1>
                 </el-col>
-            </el-row>
+            </el-row>  -->
             <!-- <el-row :gutter="20">
                 <el-col :span="8">
                     <div>
@@ -45,7 +45,7 @@ import ConCar1 from './components/ConCar1.vue'
 
         </div>
 
-<!-- 
+
         <div class="footer">
             <el-row :gutter="20">
                 <el-col :span="4">
@@ -74,16 +74,21 @@ import ConCar1 from './components/ConCar1.vue'
                     </div>
                 </el-col>
             </el-row>
-        </div> -->
-        
+        </div>
+
     </div>
 </template>
 
 
 <style scoped>
-.video-player{
+.footer {
+    padding: 0 20px;
+}
+
+.video-player {
     height: 300px;
 }
+
 .content {
     width: 100%;
     height: 100%;
@@ -96,6 +101,10 @@ import ConCar1 from './components/ConCar1.vue'
 .box {
     width: 100%;
     height: 200px;
+    background-image: url('/src/assets/images/panel.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .middle {

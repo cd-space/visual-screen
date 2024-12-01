@@ -126,7 +126,7 @@ const getPie3D = (pieData, internalDiameterRatio, distance, alpha, pieHeight, op
         ) {
           const bfb = (
             (option.series[params.seriesIndex].pieData.endRatio -
-                option.series[params.seriesIndex].pieData.startRatio) *
+              option.series[params.seriesIndex].pieData.startRatio) *
               100
           ).toFixed(2)
           return (

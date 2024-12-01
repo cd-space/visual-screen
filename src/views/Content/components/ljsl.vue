@@ -21,13 +21,73 @@ const content = ref(88888)
   position: relative;
 }
 
+/* 定义动画关键帧 */
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .background {
   position: absolute;
   inset: 20px;
   /* 设置所有方向的边距为20px */
-  background-image: url('src/assets/images/图层 1.png');
+  background-image: url('src/assets/images/pic11.png');
   background-repeat: no-repeat;
   background-size: contain;
+  z-index: 0;
+  /* 固定背景 */
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('src/assets/images/pic33.png');
+  /* 动态背景图 */
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0;
+  /* 初始透明度 */
+  animation: fadeInOut 4s infinite;
+  /* 渐变动画 */
+  z-index: 1;
+  /* 保证在主背景图上 */
+}
+
+/* 第二个动态背景 */
+.background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('src/assets/images/pic44.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0;
+  animation: fadeInOut 4s infinite alternate;
+  z-index: 1;
 }
 
 .Title {
