@@ -14,6 +14,7 @@ import 'element-plus/dist/index.css';
 import { BorderBox, ScrollTable } from 'bin-datav'
 import 'bin-datav/lib/styles/index.css'
 
+import pinia from './stores'
 
 const app = createApp(App)
 
@@ -22,6 +23,6 @@ app.use(createPinia())
 app.use(router)
 app.use(BorderBox)
 app.use(ScrollTable)
-
+app.use(pinia)
 
 app.mount('#app')

@@ -4,31 +4,30 @@
     </div>
 </template>
 
-<script setup>
-import { reactive, onMounted } from 'vue';
+<script>
+import StuList from '/src/stores/StuList.js'
+
+const slist=StuList();
+console.log(slist)
+
+
+// 第一个 <script> 标签：负责处理 Excel 文件读取和数据处理
+import { onMounted, reactive } from 'vue';
 import * as XLSX from 'xlsx';
 
-const config = reactive({
-    header: ['姓名', '年级', '专业'],
-    data: [],
-    index: true,
-    columnWidth: [50],
-    align: ['center'],
-    indexHeader: "序号"
-});
-
-// 在组件挂载时读取Excel文件
+const list = []; 
+// 在组件挂载时读取 Excel 文件
 onMounted(async () => {
     const filePath = '/学生第二期.xlsx';
     try {
         const data = await readExcel(filePath);
-        config.data = data;
+        list.push(...data); 
     } catch (error) {
         console.error('Error reading the Excel file:', error);
     }
 });
-
-// function to read excel
+console.log(list)
+// function to read Excel
 function readExcel(filePath) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -56,8 +55,21 @@ function readExcel(filePath) {
         xhr.send();
     });
 }
+</script>
 
+<script setup>
+// 第二个 <script> 标签：负责定义配置并绑定数据
+import { reactive } from 'vue';
 
+// 配置项
+const config = reactive({
+    header: ['姓名', '年级', '专业'],
+    data: list, // 使用响应式的 list 作为数据源
+    index: true,
+    columnWidth: [50],
+    align: ['center'],
+    indexHeader: "序号"
+});
 </script>
 
 <style scoped></style>
