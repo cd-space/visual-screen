@@ -19,16 +19,13 @@ import ConCar1 from './components/ConCar1.vue'
         <div class="middle">
             <el-row :gutter="10">
                 <el-col :span="24">
-                    <ComCarousel></ComCarousel>
                     <ConCar1></ConCar1>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
                 <el-col :span="8">
                     <div>
-                        <bv-border-box name="border9">
                             <ConList></ConList>
-                        </bv-border-box>
                     </div>
                 </el-col>
                 <el-col :span="8">
@@ -93,7 +90,7 @@ import ConCar1 from './components/ConCar1.vue'
 .content {
     width: 100%;
     height: 100%;
-    background-image: url('/src/assets/images/panel.png');
+    /* background-image: url('/src/assets/images/panel.png'); */
     background-size: cover;
     background-position: center;
     padding: 10px
