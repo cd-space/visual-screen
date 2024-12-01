@@ -19,6 +19,10 @@ import ConCar1 from './components/ConCar1.vue'
         <div class="middle">
             <el-row :gutter="10">
                 <el-col :span="24">
+<<<<<<< HEAD
+=======
+
+>>>>>>> f33cd4cb8f72be08b5235cae38f12bca50ad6fd8
                     <ConCar1></ConCar1>
                 </el-col>
             </el-row>
