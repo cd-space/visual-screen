@@ -29,7 +29,6 @@ onMounted(async () => {
 });
 
 // function to read excel
-// function to read excel
 function readExcel(filePath) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
