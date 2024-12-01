@@ -19,7 +19,7 @@ import ConCar1 from './components/ConCar1.vue'
         <div class="middle">
             <el-row :gutter="10">
                 <el-col :span="24">
-                    <ComCarousel></ComCarousel>
+
                     <ConCar1></ConCar1>
                 </el-col>
             </el-row>
