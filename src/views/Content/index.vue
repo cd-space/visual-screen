@@ -105,7 +105,7 @@ import ConCar1 from './components/ConCar1.vue'
 }
 
 .middle {
-    margin-top: 70px;
+    margin-top: 35px;
     margin-bottom: 100px;
 }
 </style>
