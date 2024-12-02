@@ -17,11 +17,16 @@ import 'bin-datav/lib/styles/index.css'
 
 const app = createApp(App)
 
+const pinia = createPinia()
+
+export default pinia
+
 app.use(ElementPlus);
 app.use(createPinia())
 app.use(router)
 app.use(BorderBox)
 app.use(ScrollTable)
-
+app.use(createPinia)
+app.use(pinia)
 
 app.mount('#app')
