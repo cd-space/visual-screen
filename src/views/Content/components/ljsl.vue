@@ -8,9 +8,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref ,onMounted} from 'vue'
+import { useExcelDataStore } from '@/stores/ljsl';
 const title = ref('累计数量')
-const content = ref(88888)
+const content = ref(0)
+const excelStore = useExcelDataStore()
+
+onMounted(async () => {
+  await excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
+  content.value = excelStore.totalDistance;
+  console.log(excelStore.totalDistance); // 打印累加后的数量
+});
+// excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
+// const content = excelStore.totalDistance;
 </script>
 
 <style scoped>
