@@ -90,7 +90,6 @@ import ConCar1 from './components/ConCar1.vue'
 .content {
     width: 100%;
     height: 100%;
-    /* background-image: url('/src/assets/images/panel.png'); */
     background-size: cover;
     background-position: center;
     padding: 10px
@@ -106,7 +105,7 @@ import ConCar1 from './components/ConCar1.vue'
 }
 
 .middle {
-    margin-top: 70px;
+    margin-top: 35px;
     margin-bottom: 100px;
 }
 </style>

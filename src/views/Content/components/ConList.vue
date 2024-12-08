@@ -7,10 +7,8 @@
 
 <script setup>
 import { reactive } from 'vue';
-const config = reactive({
-    header: ['列1', '列2', '列3'],
-    data: [
-        ['行1列1', '行1列2', '行1列3'],
+const list=[
+        ['12', '行1列2', '行1列3'],
         ['行2列1', '行2列2', '行2列3'],
         ['行3列1', '行3列2', '行3列3'],
         ['行4列1', '行4列2', '行4列3'],
@@ -21,8 +19,11 @@ const config = reactive({
         ['行9列1', '行9列2', '行9列3'],
         ['行10列1', '行10列2', '行10列3']
     ]
+const config = reactive({
+    header: ['列1', '列2', '列3'],
+    data: list
 })
-
+console.log(config.data)
 
 </script>
 

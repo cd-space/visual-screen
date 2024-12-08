@@ -31,7 +31,9 @@ import Title from '../Title/index.vue'
 }
 
 .test-content {
-    width: 100vw;
+    width: 96vw;
     height: 93vh;
+    margin-left: 50px;
+    margin-right: 20px;
 }
 </style>
