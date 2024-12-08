@@ -22,6 +22,8 @@ export default {
         const option = {
           title: {
             text: '参访里程',
+
+            left: 10,
             textStyle: {
               color: 'rgba(255, 255, 255, 1)',
             },

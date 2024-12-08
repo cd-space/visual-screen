@@ -21,6 +21,7 @@ export default {
         const option = {
           title: {
             text: '专业及年级分布',
+            left: 10,
             textStyle: {
               color: 'rgba(255, 255, 255, 1)',
             },

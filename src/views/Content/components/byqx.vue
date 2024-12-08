@@ -1,7 +1,7 @@
 <template>
-  <div class="byqx">毕业去向</div>
+  <div class="byqx">毕业意向</div>
   <!-- 设置一个 div 来承载 ECharts 图表，指定宽高 -->
-  <div ref="chart" style="width: 100%; height: 200px;"></div>
+  <div ref="chart" style="width: 110%; height: 200px;"></div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import * as echarts from 'echarts'; // 导入 echarts 库
 import 'echarts-gl'; // 导入 echarts-gl 扩展模块
 import { getPie3D, getParametricEquation } from '@/utils/chart.js'; // 引入自定义工具方法
 
-const color = ['#2bdcb5', '#023c8d']; // 定义颜色数组，用于不同部分的图形显示
+const color = ['#56e8db', '#54edd2', '#004abf', '#071a2e']; // 定义颜色数组，用于不同部分的图形显示
 
 export default {
   name: 'Chart3D', // 定义组件名称
@@ -17,8 +17,11 @@ export default {
     return {
       // 初始化图表的数据
       optionData: [
+
+        { value: 288, name: '就业' },
+        { value: 76, name: '考公' },
         { value: 176, name: '考研' },
-        { value: 288, name: '就业' }
+        { value: 16, name: '其它' }
       ],
       statusChart: null, // 用来存储图表实例
       option: {} // 图表配置
@@ -50,14 +53,14 @@ export default {
           rich: { // 设置不同部分的样式
             b: { color: '#fff', lineHeight: 25, align: 'left' },
             c: {
-              fontSize: 22,
+              fontSize: 10,
               color: '#fff',
               textShadowColor: '#1c90a6',
               textShadowOffsetX: 0,
               textShadowOffsetY: 2,
               textShadowBlur: 5
             },
-            d: { color: color[index], align: 'left' }
+            d: { fontSize: 10, color: '#fff', align: 'left' }
           }
         };
         item.labelLine = {
@@ -170,6 +173,8 @@ export default {
 .byqx {
   float: left;
   font-size: larger;
+  font-weight: bolder;
   color: rgb(255, 255, 255);
+  margin-left: 5%;
 }
 </style>

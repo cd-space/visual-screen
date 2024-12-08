@@ -22,6 +22,7 @@ export default {
           //设置标题
           title: {
             text: '参与人数',
+            left: 10,
             textStyle: {
               color: "rgba(255, 255, 255, 1)"
             }
@@ -76,11 +77,12 @@ export default {
                 show: true,
                 position: [5, -15], // [x, y] 设置绝对偏移量
                 formatter: (params) => {
-                  const icon = params.dataIndex === 1 ? '👦' : '👧';
+
                   const labelNames = ['总人数', '男生', '女生'];
-                  return `${icon} ${labelNames[params.dataIndex]}：${params.value}人`;
+                  return ` ${labelNames[params.dataIndex]}：${params.value}人`;
                 },
                 fontSize: 12,
+                color: '#FFFFFF', // 设置字体颜色为纯白色
               },
             },
           ],

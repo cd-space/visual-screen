@@ -16,20 +16,16 @@ import ConCar1 from './components/ConCar1.vue'
 
 
     <div class="content">
-        <div class="middle">
+        <!--<div class="middle">
             <el-row :gutter="10">
                 <el-col :span="24">
-<<<<<<< HEAD
-=======
-
->>>>>>> f33cd4cb8f72be08b5235cae38f12bca50ad6fd8
                     <ConCar1></ConCar1>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
                 <el-col :span="8">
                     <div>
-                            <ConList></ConList>
+                        <ConList></ConList>
                     </div>
                 </el-col>
                 <el-col :span="8">
@@ -37,7 +33,7 @@ import ConCar1 from './components/ConCar1.vue'
                         <VideoPlayer></VideoPlayer>
                     </div>
                 </el-col>
-                <!-- 就业积分 -->
+               
                 <el-col :span="8">
                     <div>
                         <StuList></StuList>
@@ -45,7 +41,7 @@ import ConCar1 from './components/ConCar1.vue'
                 </el-col>
             </el-row>
 
-        </div>
+        </div>  -->
 
 
         <div class="footer">
