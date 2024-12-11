@@ -86,7 +86,7 @@ const resizeChart = () => {
 onMounted(async () => {
   await excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
   const totalDistance = excelStore.totalDistance;
-  //console.log(totalDistance);
+  console.log(excelStore.totalDistance);
   initChart(totalDistance); // 初始化图表
   window.addEventListener('resize', resizeChart);
 });
