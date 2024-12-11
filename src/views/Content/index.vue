@@ -33,7 +33,6 @@ import ConCar1 from './components/ConCar1.vue'
                         <VideoPlayer></VideoPlayer>
                     </div>
                 </el-col>
-
                 <el-col :span="8">
                     <div>
                         <StuList></StuList>
