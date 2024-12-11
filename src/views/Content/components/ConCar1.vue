@@ -3,7 +3,7 @@
     <marquee-text
      ref="marquee"
       :repeat="repeatTimes"
-      :duration="1"
+      :duration="5"
       :paused="paused">
       <a v-for="(badge, index) in badges" :key="index" :href="badge.link" target="_blank" class="badge-link">
         <img :src="badge.image" :alt="badge.name" class="badge-img" />
@@ -22,12 +22,37 @@ const paused = ref(false);
 
 const badges = [
   {
-    image: "/src/assets/images/xiaohui.png",
+    image: "src/assets/conpanylogs/CJAE.jpg",
     name: "校徽",
     link: "https://example.com/xiaohui",
   },
   {
-    image: "/src/assets/images/yuanhui.png",
+    image: "src/assets/conpanylogs/CML.png",
+    name: "院徽",
+    link: "https://example.com/yuanhui",
+  },
+  {
+    image: "src/assets/conpanylogs/Deloite.jpg",
+    name: "校徽",
+    link: "https://example.com/xiaohui",
+  },
+  {
+    image: "src/assets/conpanylogs/Haier.jpeg",
+    name: "院徽",
+    link: "https://example.com/yuanhui",
+  },
+  {
+    image: "src/assets/conpanylogs/oppo.jpeg",
+    name: "校徽",
+    link: "https://example.com/xiaohui",
+  },
+  {
+    image: "src/assets/conpanylogs/RangeZhihui.jpeg",
+    name: "院徽",
+    link: "https://example.com/yuanhui",
+  },
+  {
+    image: "src/assets/conpanylogs/sstp.jpg",
     name: "院徽",
     link: "https://example.com/yuanhui",
   },
@@ -60,7 +85,7 @@ onMounted(() => {
 .marquee-container {
   width: 100%;
   overflow: hidden;
-  height: 80px;
+  height: 150px;
   display: flex;
   align-items: center;
 }
@@ -77,8 +102,8 @@ onMounted(() => {
 }
 
 .badge-img {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   transition: transform 0.2s ease;
 }
