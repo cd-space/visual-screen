@@ -7,8 +7,8 @@ import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 import ConList from './components/ConList.vue';
 import StuList from './components/StuList.vue';
 import VideoPlayer from './components/VideoPlayer.vue'
-import ComCarousel from './components/ComCarousel.vue'
 import ConCar1 from './components/ConCar1.vue'
+
 
 </script>
 
@@ -16,7 +16,7 @@ import ConCar1 from './components/ConCar1.vue'
 
 
     <div class="content">
-        <!--<div class="middle">
+        <div class="middle">
             <el-row :gutter="10">
                 <el-col :span="24">
                     <ConCar1></ConCar1>
@@ -33,7 +33,7 @@ import ConCar1 from './components/ConCar1.vue'
                         <VideoPlayer></VideoPlayer>
                     </div>
                 </el-col>
-               
+
                 <el-col :span="8">
                     <div>
                         <StuList></StuList>
@@ -41,7 +41,7 @@ import ConCar1 from './components/ConCar1.vue'
                 </el-col>
             </el-row>
 
-        </div>  -->
+        </div>
 
 
         <div class="footer">
@@ -80,7 +80,8 @@ import ConCar1 from './components/ConCar1.vue'
 
 <style scoped>
 .footer {
-    padding: 0 20px;
+    padding-left: 0;
+    padding-right: 10px;
 }
 
 .video-player {
@@ -106,6 +107,6 @@ import ConCar1 from './components/ConCar1.vue'
 
 .middle {
     margin-top: 35px;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 </style>

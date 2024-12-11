@@ -6,7 +6,7 @@
 
 <script setup>
 import { reactive, onMounted } from "vue";
-import { useUserInfoStore } from "@/stores/StuList.js";
+import { useUserInfoStore } from "@/stores/stuList.js";
 
 const store = useUserInfoStore();
 
@@ -25,7 +25,7 @@ const config = reactive({
   //   ["行9列1", "行9列2", "行9列3"],
   //   ["行10列1", "行10列2", "行10列3"],
   // ],
-  data:store.data,
+  data: store.data,
   index: true,
   columnWidth: [50],
   align: ["center"],

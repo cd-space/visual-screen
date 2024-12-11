@@ -4,109 +4,123 @@
 
 <script>
 import * as echarts from 'echarts';
-import { onMounted, onBeforeUnmount, ref } from 'vue';//用于管理响应式数据和组件生命周期
+import { onMounted, onBeforeUnmount, ref, toRaw } from 'vue';
+import { useCYRSStore } from '@/stores/cyrs.js'; // 引入 Pinia Store
 
 export default {
-  name: 'BarChart',//定义一个名为 BarChart 的 Vue 组件，并开始 setup 函数
+  name: 'BarChart',
   setup() {
-    const chart = ref(null);//创建一个响应式引用 chart，存储图表容器元素。
-    let myChart = null;//声明一个变量 myChart 用于存储 ECharts 实例。
+    const chart = ref(null); // 响应式引用图表容器
+    let myChart = null; // 存储 ECharts 实例
+    const store = useCYRSStore();
+    const rawData = toRaw(store.CYRSData);
 
-    // 定义 initChart 函数，用于初始化图表。
     const initChart = () => {
-      //检查 chart 引用是否已绑定到 DOM 元素。
       if (chart.value) {
-        myChart = echarts.init(chart.value);//使用 echarts.init() 创建一个 ECharts 实例并绑定到图表容器。
+        myChart = echarts.init(chart.value);
+        //console.log("vue文件数据:", rawData);
 
         const option = {
-          //设置标题
           title: {
             text: '参与人数',
-            left: 10,
+            left: 'left',
             textStyle: {
-              color: "rgba(255, 255, 255, 1)"
-            }
-          },
-          //配置工具提示，在鼠标悬停时触发
-          tooltip: {
-            trigger: 'axis',
-            //设置为 shadow 以显示阴影效果。
-            axisPointer: {
-              type: 'shadow',
+              color: "rgba(255, 255, 255, 1)",
             },
           },
-          //设置图表的内边距，确保标签不会超出图表边界。
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow', // 阴影指示器
+            },
+          },
           grid: {
-            left: '10%',
-            right: '10%',
-            bottom: '10%',
-            containLabel: true,
+            left: 40,
+
+            height: 120,
+            bottom: 30,
+
           },
-          // 隐藏 x 轴，不显示坐标轴的刻度、标签和线条。
           xAxis: {
-            show: false, // 隐藏 x 轴
+            type: 'category', // 将 x 轴设置为类目轴
+            axisLine: {
+              show: false,
+            },
+            axisLabel: {
+              color: '#FFFFFF', // 白色标签
+            },
+            axisTick: {
+              show: false, // 隐藏 y 轴的数据刻度线
+            },
           },
-          //设置 y 轴类型为 category 类目轴。
           yAxis: {
-            type: 'category',
-            data: ['总人数', '男生', '女生'], // y 轴数据
+            type: 'value', // 将 y 轴设置为数值轴
             axisLine: {
               show: false, // 隐藏 y 轴轴线
             },
-            axisTick: {
-              show: false, // 隐藏 y 轴刻度
+            minorSplitLine: {
+              show: false, // 隐藏辅助线
             },
             axisLabel: {
-              show: false, // 隐藏 y 轴标签
+              color: '#FFFFFF', // 白色标签
+            },
+            axisTick: {
+              show: false, // 隐藏 y 轴的数据刻度线
+            },
+            splitLine: {
+              show: true, // 显示网格线（刻度线之间的线条）
+              lineStyle: {
+                color: 'rgba(255, 255, 255, 0.2)', // 设置网格线的颜色和透明度
+              },
             },
           },
+          dataset: rawData, // 使用 Pinia 数据源
           series: [
             {
               type: 'bar',
-              data: [100, 80, 20],
-
-              barWidth: '30%', // 设置条形图宽度
-              barCategoryGap: '10%', // 调整分类间条形的间距
+              encode: {
+                x: 'category', // 对应 x 轴的字段
+                y: 'value',    // 对应 y 轴的字段
+              },
+              barWidth: '40%', // 调整柱条宽度
               itemStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                   { offset: 0, color: '#00348b' },
                   { offset: 1, color: '#34fdbd' },
                 ]),
               },
               label: {
                 show: true,
-                position: [5, -15], // [x, y] 设置绝对偏移量
+                position: 'top', // 在柱条顶部显示值
                 formatter: (params) => {
-
-                  const labelNames = ['总人数', '男生', '女生'];
-                  return ` ${labelNames[params.dataIndex]}：${params.value}人`;
+                  return `${params.value[1]}`; // 仅显示数字部分
                 },
                 fontSize: 12,
-                color: '#FFFFFF', // 设置字体颜色为纯白色
+                color: '#FFFFFF', // 字体颜色
               },
             },
           ],
-
         };
 
         myChart.setOption(option);
       }
     };
 
-    onMounted(() => {
+    onMounted(async () => {
+      await store.loadStudentData(); // 加载数据
       initChart();
-      window.addEventListener('resize', resizeChart);//监听窗口大小变化
+      window.addEventListener('resize', resizeChart); // 响应窗口大小调整
     });
 
     const resizeChart = () => {
       if (myChart) {
-        myChart.resize();//监听窗口大小变化
+        myChart.resize();
       }
     };
 
     onBeforeUnmount(() => {
       if (myChart) {
-        myChart.dispose();//销毁图表实例，释放内存。
+        myChart.dispose();
       }
       window.removeEventListener('resize', resizeChart);
     });
@@ -119,5 +133,5 @@ export default {
 </script>
 
 <style scoped>
-/* 可以根据需要调整图表容器的样式 */
+/* 根据需要调整图表容器样式 */
 </style>

@@ -1,124 +1,104 @@
 <template>
-  <div class="box">
-    <div class="background">
-      <div class="Title">{{ title }}</div>
-      <div class="Content">{{ content }}km</div>
-    </div>
-  </div>
+  <div ref="chart" style="width: 100%; height: 200px;"></div>
 </template>
 
 <script setup>
-import { ref ,onMounted} from 'vue'
-import { useExcelDataStore } from '@/stores/ljsl';
-const title = ref('累计数量')
-const content = ref(0)
-const excelStore = useExcelDataStore()
+import * as echarts from 'echarts';
+import 'echarts-liquidfill';
+import { ref, onBeforeUnmount, onMounted } from 'vue';
+import { useExcelDataStore } from '@/stores/ljsl.js';
+
+const chart = ref(null);
+let myChart = null;
+const excelStore = useExcelDataStore();
+
+const initChart = (value) => {
+  if (chart.value) {
+    myChart = echarts.init(chart.value);
+    const option = {
+      title: {
+        text: `${value}`, // 显示数值
+        textStyle: {
+          fontSize: 20,
+          fontFamily: 'Microsoft Yahei',
+          fontWeight: 'normal',
+          color: '#fff',
+        },
+        x: 'center',
+        y: '38%',
+      },
+      series: [
+        {
+          type: 'liquidFill',
+          radius: '75%',
+          center: ['50%', '50%'],
+          data: [0.4, 0.4], // 固定填充高度为 40%
+          label: {
+            show: false, // 隐藏显示在水球图上的数值文本 
+          },
+          backgroundStyle: {
+            color: 'transparent',
+          },
+          outline: {
+            borderDistance: 3,
+            itemStyle: {
+              borderWidth: 4,
+              borderColor: '#5acef2',
+            },
+          },
+          color: [
+            {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                { offset: 1, color: 'rgba(6, 187, 112, 0.3)' },
+                { offset: 0, color: 'rgba(11, 201, 199, 0.3)' },
+              ],
+            },
+            {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                { offset: 1, color: 'rgba(6, 187, 112, 1)' },
+                { offset: 0, color: 'rgba(11, 201, 199, 1)' },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    myChart.setOption(option);
+  }
+};
+
+const resizeChart = () => {
+  if (myChart) {
+    myChart.resize();
+  }
+};
 
 onMounted(async () => {
   await excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
-  content.value = excelStore.totalDistance;
-  console.log(excelStore.totalDistance); // 打印累加后的数量
+  const totalDistance = excelStore.totalDistance;
+  //console.log(totalDistance);
+  initChart(totalDistance); // 初始化图表
+  window.addEventListener('resize', resizeChart);
 });
-// excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
-// const content = excelStore.totalDistance;
+
+onBeforeUnmount(() => {
+  if (myChart) {
+    myChart.dispose();
+  }
+  window.removeEventListener('resize', resizeChart);
+});
 </script>
 
 <style scoped>
-.box {
-
-  height: 200px;
-  width: 100%;
-  position: relative;
-}
-
-/* 定义动画关键帧 */
-@keyframes fadeInOut {
-  0% {
-    opacity: 1;
-  }
-
-  25% {
-    opacity: 0.25;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  75% {
-    opacity: 0.75;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.background {
-  position: absolute;
-  inset: 20px;
-  /* 设置所有方向的边距为20px */
-  background-image: url('src/assets/images/pic11.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  z-index: 0;
-  /* 固定背景 */
-}
-
-.background::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('src/assets/images/pic33.png');
-  /* 动态背景图 */
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0;
-  /* 初始透明度 */
-  animation: fadeInOut 4s infinite;
-  /* 渐变动画 */
-  z-index: 1;
-  /* 保证在主背景图上 */
-}
-
-/* 第二个动态背景 */
-.background::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('src/assets/images/pic44.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0;
-  animation: fadeInOut 4s infinite alternate;
-  z-index: 1;
-}
-
-.Title {
-  position: absolute;
-  top: 10px;
-  /* 距离顶部10px */
-  left: 10px;
-  /* 距离左边10px */
-  font-size: 16px;
-  font-weight: bold;
-  color: aliceblue;
-}
-
-.Content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* 水平和垂直居中 */
-  font-size: 24px;
-  text-align: center;
-  color: aliceblue;
-}
+/* 样式保持不变 */
 </style>

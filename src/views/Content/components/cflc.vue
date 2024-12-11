@@ -4,7 +4,8 @@
 
 <script>
 import * as echarts from 'echarts';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { onMounted, onBeforeUnmount, ref, toRaw } from 'vue';//用于管理响应式数据和组件生命周期
+import { useCYRSStore } from '@/stores/cyrs.js'; // 引入 Pinia Store
 
 export default {
   name: 'SmoothLineChart',
@@ -12,12 +13,14 @@ export default {
     const chart = ref(null);
     let myChart = null;
     let timer = null;
+    const store = useCYRSStore();
+    const rawData = toRaw(store.CFLCData);
 
     const initChart = () => {
       if (chart.value) {
         // 初始化图表
         myChart = echarts.init(chart.value);
-
+        //console.log("vue文件数据:", rawData); // 输出 ECharts 配置中使用的数据
         // 配置图表选项
         const option = {
           title: {
@@ -31,23 +34,7 @@ export default {
           tooltip: {
             trigger: 'axis', // 鼠标悬停显示提示
           },
-          dataset: {
-            source: [
-              ['月份', '参访里程'],
-              ['1月', 30],
-              ['2月', 50],
-              ['3月', 70],
-              ['4月', 90],
-              ['5月', 120],
-              ['6月', 150],
-              ['7月', 170],
-              ['8月', 190],
-              ['9月', 210],
-              ['10月', 230],
-              ['11月', 250],
-              ['12月', 270],
-            ],
-          },
+          dataset: rawData,
           grid: {
             height: 120,
             bottom: 30,
@@ -145,7 +132,9 @@ export default {
       }
     };
 
-    onMounted(() => {
+
+    onMounted(async () => {
+      await store.loadStudentData(); // 等待数据加载完成
       initChart();
       window.addEventListener('resize', resizeChart);
     });

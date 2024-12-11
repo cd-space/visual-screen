@@ -7,7 +7,7 @@ export const useExcelDataStore = defineStore('excelData', {
     }),
     actions: {
         async loadAndSumDistance(filePath) {
-          console.log("enter pinia");
+          //console.log("enter pinia");
 
             const response = await fetch(filePath);
             const data = await response.arrayBuffer();
@@ -19,7 +19,7 @@ export const useExcelDataStore = defineStore('excelData', {
             for (let i = 2; i < 9; i++) {
               this.totalDistance += parseFloat(jsonData[i][6]);
             }
-            console.log(this.totalDistance);
+            //console.log(this.totalDistance);
         }
     }
 });
