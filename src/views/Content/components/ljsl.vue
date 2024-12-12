@@ -1,5 +1,8 @@
 <template>
-  <div ref="chart" style="width: 100%; height: 200px;"></div>
+  <div>
+    <div class="title">累计数量</div>
+    <div ref="chart" style="width: 100%; height: 200px;"></div>
+  </div>
 </template>
 
 <script setup>
@@ -100,5 +103,11 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* 样式保持不变 */
+.title {
+  float: left;
+  font-size: larger;
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  margin-left: 5%;
+}
 </style>
