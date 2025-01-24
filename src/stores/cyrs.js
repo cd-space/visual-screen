@@ -13,31 +13,27 @@ export const useCYRSStore = defineStore('xlsx', {
         ["date", "distance"], // 存储日期和参访里程数据
       ],
     },
+    LJSL: [], // 用于存储企业数量
   }),
   actions: {
     // 加载并整理数据
     async loadStudentData() {
-      //console.log("loadStudentData called");
-      
       try {
         const response = await fetch('src/assets/参访企业.xlsx');
         if (!response.ok) {
           console.error("加载文件失败，状态码:", response.status);
           return;
         }
-    
+
         const arrayBuffer = await response.arrayBuffer();
-        //console.log("文件加载成功，开始解析...");
-    
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
-        //console.log("解析后的工作簿:", workbook);
-    
+
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
-    
+
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        //console.log("JSON 数据:", jsonData);
+        console.log("JSON 数据:", jsonData);
 
         // 初始化统计变量
         let total = 0;
@@ -47,8 +43,12 @@ export const useCYRSStore = defineStore('xlsx', {
         // 初始化数组用于存储日期和参访里程
         const visitStats = [["date", "distance"]]; 
 
-        // 遍历每一行数据
-        for (let i = 2; i < jsonData.length; i++) { // 假设数据从第3行开始
+        // 统计企业数量
+        const enterpriseCount = jsonData.length - 3; // 去掉标题行、表头行和总计行
+        this.LJSL = [enterpriseCount];
+
+        // 遍历每一行数据，从第3行开始到倒数第2行结束
+        for (let i = 2; i < jsonData.length - 1; i++) { 
           const row = jsonData[i];
 
           // 确保数据行有效
@@ -78,8 +78,9 @@ export const useCYRSStore = defineStore('xlsx', {
         ];
         this.CFLCData.source = visitStats;
 
-        //console.log("整理后的 CYRS 数据:", this.CYRSData.source);
-        //console.log("整理后的 CFLC 数据:", this.CFLCData.source);
+        console.log("参与人数数据:", this.CYRSData.source);
+        console.log("参访历程数据:", this.CFLCData.source);
+        console.log("企业数量:", this.LJSL);
         
       } catch (error) {
         console.error("加载 Excel 文件失败：", error);

@@ -8,30 +8,26 @@
 import * as echarts from 'echarts'; // 导入 echarts 库
 import 'echarts-gl'; // 导入 echarts-gl 扩展模块
 import { getPie3D, getParametricEquation } from '@/utils/chart.js'; // 引入自定义工具方法
+import { useChartDataStore } from '@/stores/zynjfb.js'; // 引入 Pinia 存储
 
-const color = ['#56e8db', '#54edd2', '#004abf', '#071a2e']; // 定义颜色数组，用于不同部分的图形显示
+const color = ['#56e8db', '#004abf']; // 定义颜色数组，用于不同部分的图形显示
 
 export default {
   name: 'Chart3D', // 定义组件名称
   data() {
     return {
       // 初始化图表的数据
-      optionData: [
-
-        { value: 288, name: '就业' },
-        { value: 76, name: '考公' },
-        { value: 176, name: '考研' },
-        { value: 16, name: '其它' }
-      ],
+      optionData: [],
       statusChart: null, // 用来存储图表实例
       option: {} // 图表配置
     };
   },
-  created() {
-    this.setLabel(); // 组件创建时设置图表标签样式
-  },
-  mounted() {
-    this.initChart(); // 组件挂载后初始化图表
+  async mounted() {
+    const chartDataStore = useChartDataStore();
+    await chartDataStore.loadStudentData(); // 加载学生数据
+    this.optionData = chartDataStore.byqx.source; // 使用加载的数据更新 optionData
+    this.setLabel(); // 设置图表标签样式
+    this.initChart(); // 初始化图表
 
     window.addEventListener('resize', this.changeSize); // 监听窗口大小变化，调整图表大小
   },

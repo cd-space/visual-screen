@@ -9,18 +9,18 @@
 import * as echarts from 'echarts';
 import 'echarts-liquidfill';
 import { ref, onBeforeUnmount, onMounted } from 'vue';
-import { useExcelDataStore } from '@/stores/ljsl.js';
+import { useCYRSStore } from '@/stores/cyrs.js';
 
 const chart = ref(null);
 let myChart = null;
-const excelStore = useExcelDataStore();
+const excelStore = useCYRSStore();
 
 const initChart = (value) => {
   if (chart.value) {
     myChart = echarts.init(chart.value);
     const option = {
       title: {
-        text: `${value}`, // 显示数值
+        text: `${value}个`, // 显示数值
         textStyle: {
           fontSize: 20,
           fontFamily: 'Microsoft Yahei',
@@ -87,10 +87,9 @@ const resizeChart = () => {
 };
 
 onMounted(async () => {
-  await excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
-  const totalDistance = excelStore.totalDistance;
-  //console.log(totalDistance);
-  initChart(totalDistance); // 初始化图表
+  await excelStore.loadStudentData();
+  const enterpriseCount = excelStore.LJSL[0];
+  initChart(enterpriseCount); // 初始化图表
   window.addEventListener('resize', resizeChart);
 });
 
