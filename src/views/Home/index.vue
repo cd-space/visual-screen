@@ -19,7 +19,7 @@ import Title from '../Title/index.vue'
     height: 100vh;
     /* box-sizing: border-box;  */
     background-image: url('/src/assets/images/bg-main.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -32,7 +32,7 @@ import Title from '../Title/index.vue'
 
 .test-content {
     width: 96vw;
-    height: 93vh;
+    height: 90vh;
     margin-left: 50px;
     margin-right: 20px;
 }

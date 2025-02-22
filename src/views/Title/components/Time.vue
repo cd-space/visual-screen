@@ -1,11 +1,17 @@
 <template>
   <div class="datetime">
-    <span class="time">{{ currentDateTime.year }}</span>年
-    <span class="time">{{ currentDateTime.month }}</span>月
-    <span class="time">{{ currentDateTime.day }}</span>日
-    <span class="time">{{ currentDateTime.hour }}</span>时
-    <span class="time">{{ currentDateTime.minute }}</span>分
-    <span class="time">{{ currentDateTime.second }}</span>秒
+    <span class="time">{{ currentDateTime.year }}</span>
+    <span class="datetime">年</span>
+    <span class="time">{{ currentDateTime.month }}</span>
+    <span class="datetime">月</span>
+    <span class="time">{{ currentDateTime.day }}</span>
+    <span class="datetime">日</span>
+    <span class="time">{{ currentDateTime.hour }}</span>
+    <span class="datetime">时</span>
+    <span class="time">{{ currentDateTime.minute }}</span>
+    <span class="datetime">分</span>
+    <span class="time">{{ currentDateTime.second }}</span>
+    <span class="datetime">秒</span>
     <span class="time">{{ currentDateTime.weekday }}</span>
   </div>
 </template>
@@ -41,16 +47,17 @@ function updateDateTime() {
 <style scoped>
 .datetime {
   font-family: Arial, sans-serif;
-  font-size: 18px;
+  font-size: 0.8vw;
   line-height: 1.5;
   font-weight: bold;
+  color: white;
+  margin-left: 2px;
 }
 
 
 .time {
-  font-size: 20px;
+  font-size: 1.3vw;
   color: yellow;
   font-weight: bold;
-  font-size: 25px;
 }
 </style>
