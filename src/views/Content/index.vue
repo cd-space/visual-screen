@@ -9,6 +9,22 @@ import StuList from './components/StuList.vue';
 import VideoPlayer from './components/VideoPlayer.vue'
 import ConCar1 from './components/ConCar1.vue'
 
+import StuList3 from './components/StuList3.vue';
+import StuList2 from './components/StuList2.vue';
+import StuList4 from './components/StuList4.vue';
+import { ref } from 'vue'
+
+// const tableData = ref([
+//   { name: '张三', age: 28, city: '北京' },
+//   { name: '李四', age: 32, city: '上海' },
+//     { name: '王五', age: 24, city: '广州' },
+//     { name: '赵六', age: 31, city: '深圳' },
+//     { name: '孙七', age: 22, city: '杭州' },
+//     { name: '周八', age: 26, city: '南京' },
+//     { name: '吴九', age: 29, city: '苏州' },
+//     { name: '郑十', age: 30, city: '成都' },
+
+// ])
 
 </script>
 
@@ -35,7 +51,11 @@ import ConCar1 from './components/ConCar1.vue'
                 </el-col>
                 <el-col :span="8">
                     <div>
-                        <StuList></StuList>
+                        <!-- <StuList></StuList> -->
+                        <!-- <StuList3></StuList3> -->
+                        <!-- <StuList2 ></StuList2> -->
+                         <div style="width: 100%;height: 200px;overflow: hidden;">
+                        <StuList4></StuList4></div>
                     </div>
                 </el-col>
             </el-row>
@@ -75,6 +95,8 @@ import ConCar1 from './components/ConCar1.vue'
 
     </div>
 </template>
+
+
 
 
 <style scoped>

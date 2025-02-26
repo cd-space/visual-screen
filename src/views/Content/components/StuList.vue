@@ -10,7 +10,6 @@ import { useUserInfoStore } from "@/stores/stuList.js";
 
 const store = useUserInfoStore();
 
-console.log('123')
 
 // 定义响应式数据
 const config = reactive({
