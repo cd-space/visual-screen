@@ -87,9 +87,16 @@ const resizeChart = () => {
 };
 
 onMounted(async () => {
+<<<<<<< HEAD
   await excelStore.loadStudentData();
   const enterpriseCount = excelStore.LJSL[0];
   initChart(enterpriseCount); // 初始化图表
+=======
+  await excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
+  const totalDistance = excelStore.totalDistance;
+  console.log(excelStore.totalDistance);
+  initChart(totalDistance); // 初始化图表
+>>>>>>> refs/remotes/origin/main
   window.addEventListener('resize', resizeChart);
 });
 

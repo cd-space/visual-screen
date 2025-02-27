@@ -17,11 +17,13 @@ import Title from '../Title/index.vue'
 .box_main {
     width: 100vw;
     height: 100vh;
-    /* box-sizing: border-box;  */
     background-image: url('/src/assets/images/bg-main.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 
@@ -32,8 +34,10 @@ import Title from '../Title/index.vue'
 
 .test-content {
     width: 96vw;
-    height: 93vh;
-    margin-left: 50px;
-    margin-right: 20px;
+    height: 90vh;
+    margin: 0 auto;
+    padding-left: 6px;
+
 }
+
 </style>

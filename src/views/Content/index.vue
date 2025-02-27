@@ -4,11 +4,15 @@ import BYQX from '@/views/Content/components/byqx.vue'
 import CYRS from '@/views/Content/components/cyrs.vue'
 import CFLC from '@/views/Content/components/cflc.vue'
 import ZYNJFB from '@/views/Content/components/zynjfb.vue'
-import ConList from './components/ConList.vue';
+import ConList2 from './components/ConList2.vue';
 import StuList from './components/StuList.vue';
 import VideoPlayer from './components/VideoPlayer.vue'
 import ConCar1 from './components/ConCar1.vue'
 
+import StuList3 from './components/StuList3.vue';
+import StuList2 from './components/StuList2.vue';
+import StuList4 from './components/StuList4.vue';
+import { ref } from 'vue'
 
 </script>
 
@@ -17,29 +21,20 @@ import ConCar1 from './components/ConCar1.vue'
 
     <div class="content">
         <div class="middle">
-            <el-row :gutter="10">
-                <el-col :span="24">
-                    <ConCar1></ConCar1>
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="8">
-                    <div>
-                        <ConList></ConList>
-                    </div>
-                </el-col>
-                <el-col :span="8">
-                    <div class="video-player">
-                        <VideoPlayer></VideoPlayer>
-                    </div>
-                </el-col>
-
-                <el-col :span="8">
-                    <div>
-                        <StuList></StuList>
-                    </div>
-                </el-col>
-            </el-row>
+            <div style="height: 17%; width: 100%;">
+                <ConCar1></ConCar1>
+            </div>
+            <div style="height: 83%; width: 100%;margin-top: 10px; display: flex;justify-content: space-between;">
+                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;;" class="box">
+                    <ConList2></ConList2>
+                </div>
+                <div style="width: 30%; height: 100%;">
+                    <VideoPlayer></VideoPlayer>
+                </div>
+                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;" class="box">
+                    <StuList2></StuList2>
+                </div>
+            </div>
 
         </div>
 
@@ -78,15 +73,18 @@ import ConCar1 from './components/ConCar1.vue'
 </template>
 
 
+
+
 <style scoped>
 .footer {
+    height: 20%;
     padding-left: 0;
     padding-right: 10px;
 }
 
-.video-player {
+/* .video-player {
     height: 300px;
-}
+} */
 
 .content {
     width: 100%;
@@ -98,7 +96,7 @@ import ConCar1 from './components/ConCar1.vue'
 
 .box {
     width: 100%;
-    height: 200px;
+    height: 100%;
     background-image: url('/src/assets/images/panel.png');
     background-size: 100% 100%;
     background-position: center;
@@ -108,5 +106,9 @@ import ConCar1 from './components/ConCar1.vue'
 .middle {
     margin-top: 35px;
     margin-bottom: 20px;
+    height: 62vh;
+}
+.StuList {
+    height: 100%;
 }
 </style>

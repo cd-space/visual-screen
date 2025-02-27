@@ -39,9 +39,9 @@
   <style scoped>
   .video-player {
     width: 100%;
-    max-width: 800px;
+    height: 60%;
     margin: 0 auto;
-    height: 300px;
+
   }
   
   .video-js {
