@@ -14,10 +14,4 @@ const useUserInfoStore = defineStore('userInfo', {
   })
 })
 
-<<<<<<< HEAD:src/stores/stuList.js
-
- 
-export default useUserInfoStore
-=======
 export { useUserInfoStore };
->>>>>>> refs/remotes/origin/main:src/stores/stulist.js

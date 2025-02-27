@@ -77,7 +77,7 @@ import { ref } from 'vue'
 
 <style scoped>
 .footer {
-    height: 20%;
+    height: 25%;
     padding-left: 0;
     padding-right: 10px;
 }
@@ -88,7 +88,7 @@ import { ref } from 'vue'
 
 .content {
     width: 100%;
-    height: 100%;
+    height: 75%;
     background-size: cover;
     background-position: center;
     padding: 10px
@@ -108,6 +108,7 @@ import { ref } from 'vue'
     margin-bottom: 20px;
     height: 62vh;
 }
+
 .StuList {
     height: 100%;
 }
