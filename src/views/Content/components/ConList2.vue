@@ -194,6 +194,7 @@ const resetHighlight = () => {
 .loading_div {
   color: #eee;
   width: 100%;
+  height: 5%;
   font-size: 23px;
   margin: 15px 0 0px 0;
 }
@@ -246,7 +247,7 @@ const resetHighlight = () => {
 }
 .table_main_body {
   width: 100%;
-  height: 40vh;
+  height: 85%;
   overflow: hidden;
   position: relative;
 }
@@ -266,16 +267,18 @@ const resetHighlight = () => {
   margin-top: 7px;
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
-/* .success_info_body{
+
+.productProcess {
+  width: 100%;
+  height: 100%; /* 或者设置一个具体的高度 */
+}
+
+.success_info_body{
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
-.productProcess {
-  width: 100%;
-  height: 100%; /* 或者设置一个具体的高度 */
 }
 
 .table_tr:hover {

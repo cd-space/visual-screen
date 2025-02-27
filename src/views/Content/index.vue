@@ -5,13 +5,13 @@ import CYRS from '@/views/Content/components/cyrs.vue'
 import CFLC from '@/views/Content/components/cflc.vue'
 import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 import ConList2 from './components/ConList2.vue';
-import StuList from './components/StuList.vue';
+
 import VideoPlayer from './components/VideoPlayer.vue'
 import ConCar1 from './components/ConCar1.vue'
 
-import StuList3 from './components/StuList3.vue';
+
 import StuList2 from './components/StuList2.vue';
-import StuList4 from './components/StuList4.vue';
+
 import { ref } from 'vue'
 
 </script>
@@ -77,7 +77,7 @@ import { ref } from 'vue'
 
 <style scoped>
 .footer {
-    height: 20%;
+    height: 30%;
     padding-left: 0;
     padding-right: 10px;
 }
@@ -106,7 +106,7 @@ import { ref } from 'vue'
 .middle {
     margin-top: 35px;
     margin-bottom: 20px;
-    height: 62vh;
+    height: 70%;
 }
 .StuList {
     height: 100%;
