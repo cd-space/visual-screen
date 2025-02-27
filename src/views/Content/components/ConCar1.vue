@@ -24,7 +24,7 @@ const badges = [
   {
     image: "src/assets/conpanylogs/CJAE.jpg",
     name: "校徽",
-    link: "https://example.com/xiaohui",
+    link: "https://www.douyin.com/",
   },
   {
     image: "src/assets/conpanylogs/CML.png",
@@ -85,7 +85,7 @@ onMounted(() => {
 .marquee-container {
   width: 100%;
   overflow: hidden;
-  height: 150px;
+  height: 100%;
   display: flex;
   align-items: center;
 }

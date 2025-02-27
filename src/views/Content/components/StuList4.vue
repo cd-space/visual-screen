@@ -12,7 +12,7 @@
     </div>
     
     <div class="vertical-scoll" ref="scrollContainer">
-      <vue3-seamless-scroll :list="list" hover="true" :step="0.1" wheel="true">
+      <vertical-scroll :list="list" hover="true" :step="0.05" wheel="true">
         <template v-slot="{ data, index }">
           <div 
             style="width: 100%; display: flex; line-height: 30px;" 
@@ -20,24 +20,23 @@
             @mouseleave="handleMouseLeave"
             :class="{'highlight': hoveredIndex === index}"
           >
-            <div style="width: 5%;display: flex; justify-content: center;">{{ data.id }}</div>
+          <div style="width: 5%;display: flex; justify-content: center;">{{ data.id }}</div>
             <div style="width: 18%;display: flex; justify-content: center;">{{ data.name }}</div>
             <div style="width: 5%;display: flex; justify-content: center;">{{ data.sex }}</div>
             <div style="width: 10%;display: flex; justify-content: center;">{{ data.grade }}</div>
             <div style="width: 20%;display: flex; justify-content: center;">{{ data.major }}</div>
             <div style="width: 35%;display: flex; justify-content: center;">{{ data.company}}</div>
             <div style="width: 7%;display: flex; justify-content: center;">{{ data.score }}</div>
-
           </div>
         </template>
-      </vue3-seamless-scroll>
+      </vertical-scroll>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { Vue3SeamlessScroll } from "vue3-seamless-scroll";
+import { Vue3SeamlessScroll,VerticalScroll } from "vue3-seamless-scroll";
 
 const scrollRef = ref(null);
 const scrollDirection = ref("up");
@@ -69,7 +68,6 @@ const listData = [
   {id: 11 ,name: "杨十三", sex: "男", grade: "大十一", major: "人工智能", company: "快手", score: 5},
 
 ];
-
 const list = ref(listData);
 </script>
 

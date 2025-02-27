@@ -2,34 +2,28 @@
   <div class="productProcess">
     <!-- 如果页面刷新数据比较频繁，可以将loading、showFlag的相关代码删除，防止过于频繁的出现加载动画 -->
     <div class="loading_div">
-      实践积分排行榜
+      参访企业
     </div>
     <div class="success_info_body" v-show="showFlag">
       <!-- 参数名称、列数根据实际情况调整 -->
       <div class="table_body">
         <div class="table_th">
-          <div class="tr1 th_style">排名</div>
-          <div class="tr2 th_style">姓名</div>
-          <div class="tr3 th_style">性别</div>
-          <div class="tr4 th_style">年级</div>
-          <div class="tr5 th_style">专业</div>
-          <div class="tr6 th_style">参观企业</div>
-          <div class="tr7 th_style">积分</div>
+          <div class="tr1 th_style">单位</div>
+          <div class="tr2 th_style">人数</div>
+          <div class="tr3 th_style">日期</div>
+          <div class="tr4 th_style">新闻链接</div>
         </div>
-        
-        <div class="table_main_body" 
-             @wheel.prevent="handleWheel"
-             @mouseenter="pauseScroll"
-             @mouseleave="resumeScroll">
+
+        <div class="table_main_body" @wheel.prevent="handleWheel" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
           <div class="table_inner_body" :style="{ top: tableTop + 'px' }">
-            <div class="table_tr" v-for="(item, index) in tableList" :key="index"  @mouseenter="highlightRow(index)" @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
-              <div class="tr1 tr">{{ item.id }}</div>
-              <div class="tr2 tr">{{ item.name }}</div>
-              <div class="tr3 tr">{{ item.sex }}</div>
-              <div class="tr4 tr">{{ item.grade }}</div>
-              <div class="tr5 tr">{{ item.major }}</div>
-              <div class="tr6 tr">{{ item.company }}</div>
-              <div class="tr7 tr">{{ item.score }}</div>
+            <div class="table_tr" v-for="(item, index) in tableList" :key="index" @mouseenter="highlightRow(index)"
+              @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
+              <div class="tr1 tr">{{ item.company }}</div>
+              <div class="tr2 tr">{{ item.number }}</div>
+              <div class="tr3 tr">{{ item.date }}</div>
+              <div class="tr4 tr"><a :href="item.link" target="_blank" class="news-link">
+                  {{ item.link }}
+                </a></div>
             </div>
           </div>
         </div>
@@ -40,21 +34,22 @@
 </template>
 
 <script setup>
+import { number } from 'echarts';
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 
 // 定义状态
 const showFlag = ref(true);
 const tableTop = ref(0);
 const tableList = ref([
-{id: 1  ,name: "张三", sex: "男", grade: "大一", major: "计算机", company: "腾讯", score: 100},
-  {id: 2  ,name: "李四", sex: "女", grade: "大二", major: "设计", company: "阿里", score: 90},
-  {id: 3  ,name: "王五", sex: "男", grade: "大三", major: "金融", company: "百度", score: 80},
-  {id: 4  ,name: "赵六", sex: "女", grade: "大四", major: "法律", company: "京东", score: 70},
-  {id: 5  , name: "孙七", sex: "男", grade: "大五", major: "医学", company: "滴滴", score: 60},
-  {id: 6  ,name: "周八",  sex: "女", grade: "大六", major: "建筑", company: "美团", score: 50},
-  {id: 7  ,name: "吴九",  sex: "男", grade: "大七", major: "机械", company: "小米", score: 40},
-  {id: 8  ,name: "郑十",  sex : "女", grade: "大八", major: "电子", company: "华为", score: 30},
-  {id: 9  , name: "钱十一", sex: "男", grade: "大九", major: "通信", company: "字节跳动", score: 20},
+  {company:"海尔",number:20,date:"2024.10.14",link:"https://www.douyin.com/"},
+  {company:"海尔2",number:20,date:"2024.10.14",link:"https://www.douyin.com/"},
+  {company:"海尔3",number:20,date:"2024.10.14",link:"https://www.douyin.com/"},
+  {company:"海尔4",number:20,date:"2024.10.14",link:"1111111111111"},
+  {company:"海尔5",number:20,date:"2024.10.14",link:"1111111111111"},
+  {company:"海尔6",number:20,date:"2024.10.14",link:"1111111111111"},
+  {company:"海尔7",number:20,date:"2024.10.14",link:"1111111111111"},
+  {company:"海尔8",number:20,date:"2024.10.14",link:"1111111111111"},
+
 ]);
 
 const tableListSize = ref(0);
@@ -175,6 +170,7 @@ const calculateMinTop = () => {
   minTop.value = containerHeight - contentHeight;
 };
 
+
 const highlightedIndex = ref(null); // 用于存储当前悬停的行索引
 
 // 鼠标进入时高亮当前行
@@ -186,6 +182,7 @@ const highlightRow = (index) => {
 const resetHighlight = () => {
   highlightedIndex.value = null;
 };
+
 </script>
 
 
@@ -224,28 +221,18 @@ const resetHighlight = () => {
   font-size: 14px;
 }
 .tr1 {
-  width: 8%;
+  width: 35%;
 }
 .tr2 {
-  width: 18%;
-}
-.tr3 {
-  width:8%;
-  /* font-size: 13px; */
-}
-.tr4 {
   width: 10%;
 }
-.tr5 {
-  width: 20%;
+.tr3 {
+  width:25%;
 }
-.tr6 {
-  width: 28%;
-  font-size: 13px;
+.tr4 {
+  width: 30%;
 }
-.tr7 {
-  width: 8%;
-}
+
 .th_style {
   color: rgb(0, 221, 253);
   font-weight: bold;
@@ -298,5 +285,14 @@ const resetHighlight = () => {
 /* 高亮显示的样式 */
 .table_tr.highlighted {
   background-color: rgba(0, 221, 253, 0.5); /* 高亮时背景颜色 */
+}
+
+.news-link {
+  color: #00ddfd; /* 设置链接的颜色 */
+  text-decoration: none; /* 去掉默认的下划线 */
+}
+
+.news-link:hover {
+  text-decoration: underline; /* 悬停时加下划线 */
 }
 </style>
