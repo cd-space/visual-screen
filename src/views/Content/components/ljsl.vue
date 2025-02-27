@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">累计数量</div>
-    <div ref="chart" style="width: 100%; height: 200px;"></div>
+    <div ref="chart" style="width: 100%; height: 100%;"></div>
   </div>
 </template>
 

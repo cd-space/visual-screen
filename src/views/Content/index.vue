@@ -106,7 +106,7 @@ import { ref } from 'vue'
 .middle {
     margin-top: 35px;
     margin-bottom: 20px;
-    height: 62vh;
+    height: 75%;
 }
 
 .StuList {
