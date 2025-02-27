@@ -289,7 +289,7 @@ const resetHighlight = () => {
 }
 .productProcess {
   width: 100%;
-  height: 100%; /* 或者设置一个具体的高度 */
+  height: 100%; 
 }
 
 .table_tr:hover {

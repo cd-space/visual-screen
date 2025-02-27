@@ -88,7 +88,7 @@ import { ref } from 'vue'
 
 .content {
     width: 100%;
-    height: 75%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     padding: 10px
@@ -104,9 +104,9 @@ import { ref } from 'vue'
 }
 
 .middle {
-    margin-top: 35px;
-    margin-bottom: 20px;
-    height: 70%;
+    padding: 35px;
+    padding: 20px;
+    height: 75%;
 }
 
 .StuList {
