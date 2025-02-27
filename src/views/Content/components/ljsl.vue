@@ -1,23 +1,26 @@
 <template>
-  <div ref="chart" style="width: 100%; height: 200px;"></div>
+  <div>
+    <div class="title">累计数量</div>
+    <div ref="chart" style="width: 100%; height: 200px;"></div>
+  </div>
 </template>
 
 <script setup>
 import * as echarts from 'echarts';
 import 'echarts-liquidfill';
 import { ref, onBeforeUnmount, onMounted } from 'vue';
-import { useExcelDataStore } from '@/stores/ljsl.js';
+import { useCYRSStore } from '@/stores/cyrs.js';
 
 const chart = ref(null);
 let myChart = null;
-const excelStore = useExcelDataStore();
+const excelStore = useCYRSStore();
 
 const initChart = (value) => {
   if (chart.value) {
     myChart = echarts.init(chart.value);
     const option = {
       title: {
-        text: `${value}`, // 显示数值
+        text: `${value}个`, // 显示数值
         textStyle: {
           fontSize: 20,
           fontFamily: 'Microsoft Yahei',
@@ -84,10 +87,9 @@ const resizeChart = () => {
 };
 
 onMounted(async () => {
-  await excelStore.loadAndSumDistance('src/assets/参访企业.xlsx');
-  const totalDistance = excelStore.totalDistance;
-  console.log(excelStore.totalDistance);
-  initChart(totalDistance); // 初始化图表
+  await excelStore.loadStudentData();
+  const enterpriseCount = excelStore.LJSL[0];
+  initChart(enterpriseCount); // 初始化图表
   window.addEventListener('resize', resizeChart);
 });
 
@@ -100,5 +102,11 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* 样式保持不变 */
+.title {
+  float: left;
+  font-size: larger;
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  margin-left: 5%;
+}
 </style>

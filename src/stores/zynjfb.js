@@ -9,6 +9,12 @@ export const useChartDataStore = defineStore('chartData', {
         [] // 初始为空，后面根据专业和年级填充数据
       ],
     },
+    byqx: {
+      source: [
+        { value: 0, name: '就业' },
+        { value: 0, name: '考研' },    
+      ]
+    }
   }),
   actions: {
 
@@ -28,7 +34,7 @@ export const useChartDataStore = defineStore('chartData', {
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-        console.log("JSON 数据:", jsonData);
+        //console.log("JSON 数据:", jsonData);
 
         // 更新 `studentData`
         this.updateStudentData(jsonData);
@@ -40,11 +46,12 @@ export const useChartDataStore = defineStore('chartData', {
 
     updateStudentData(data) {
       const result = {};
+      const byqx = { 就业: 0, 考研: 0 }; // 初始化毕业意向统计对象
 
       // 遍历数据，跳过前两行标题和说明
       for (let i = 2; i < data.length; i++) {
         const row = data[i];
-        if (!row || row.length < 7 || !row[5] || !row[6]) {
+        if (!row || row.length < 10 || !row[5] || !row[6]) {
           console.warn(`无效行数据 (第 ${i + 1} 行):`, row);
           continue;
         }
@@ -66,7 +73,22 @@ export const useChartDataStore = defineStore('chartData', {
         } else {
           console.warn(`无效年级数据 (第 ${i + 1} 行):`, year);
         }
+
+        // 统计毕业意向
+        const graduationIntention = row[9]?.trim(); // 假设毕业意向在第9列
+        if (graduationIntention && byqx.hasOwnProperty(graduationIntention)) {
+          byqx[graduationIntention] += 1;
+        }
       }
+
+      // 将毕业意向转换为指定格式
+      const byqxFormatted = Object.keys(byqx).map(key => ({
+        value: byqx[key],
+        name: key
+      }));
+
+      // 更新毕业意向数据
+      this.byqx.source = byqxFormatted;
 
       // 转换为目标格式
       const formattedData = [['zy', '2021', '2022', '2023', '2024']];
@@ -85,8 +107,8 @@ export const useChartDataStore = defineStore('chartData', {
       this.studentData.source.length = 0;  // 清空数组内容
       this.studentData.source.push(...formattedData);  // 将新的数据推送到数组中
 
-      console.log("整理后的学生数据 ", this.studentData.source);
+      console.log("专业年级分布 ", this.studentData.source);
+      console.log("毕业意向统计 ", this.byqx.source);
     },
-
   },
 });
