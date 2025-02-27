@@ -42,27 +42,27 @@ import { ref } from 'vue'
         <div class="footer">
             <el-row :gutter="20">
                 <el-col :span="4">
-                    <div class="box">
+                    <div class="box" style="padding: .04rem;">
                         <LJSL></LJSL>
                     </div>
                 </el-col>
                 <el-col :span="6">
-                    <div class="box">
+                    <div class="box" style="padding: .04rem;">
                         <CFLC></CFLC>
                     </div>
                 </el-col>
                 <el-col :span="4">
-                    <div class="box">
+                    <div class="box" style="padding: .04rem;">
                         <CYRS></CYRS>
                     </div>
                 </el-col>
                 <el-col :span="6">
-                    <div class="box">
+                    <div class="box" style="padding: .04rem;">
                         <ZYNJFB></ZYNJFB>
                     </div>
                 </el-col>
                 <el-col :span="4">
-                    <div class="box">
+                    <div class="box" style="padding: .04rem;">
                         <BYQX></BYQX>
                     </div>
                 </el-col>

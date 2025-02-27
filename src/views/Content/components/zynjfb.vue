@@ -1,4 +1,5 @@
 <template>
+  <div class="byqx">专业及年级分布</div>
   <div ref="chart" style="width: 100%; height: 100%;"></div>
 </template>
 
@@ -25,13 +26,7 @@ export default {
         //console.log("vue测试数据1", zyStore.studentData);
 
         const option = {
-          title: {
-            text: '专业及年级分布',
-            left: 10,
-            textStyle: {
-              color: 'rgba(255, 255, 255, 1)',
-            },
-          },
+
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -136,5 +131,11 @@ export default {
 </script>
 
 <style scoped>
-/* 可以根据需要调整图表容器的样式 */
+.byqx {
+  float: left;
+  font-size: larger;
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  margin-left: 5%;
+}
 </style>
