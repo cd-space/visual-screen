@@ -6,7 +6,7 @@
 
 <script setup>
 import { reactive, onMounted } from "vue";
-import { useUserInfoStore } from "@/stores/StuList.js";
+import { useUserInfoStore } from "@/stores/stulist.js";
 
 const store = useUserInfoStore();
 
