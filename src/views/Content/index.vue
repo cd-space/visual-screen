@@ -76,22 +76,21 @@ import { ref } from 'vue'
 
 
 <style scoped>
-.footer {
-    height: 25%;
-    padding-left: 0;
-    padding-right: 10px;
-}
-
-/* .video-player {
-    height: 300px;
-} */
-
 .content {
     width: 100%;
-    height: 75%;
+    height: calc(66vh - 10px);
+    /* 减去间距的高度 */
     background-size: cover;
     background-position: center;
-    padding: 10px
+    padding: 10px;
+}
+
+.footer {
+    height: 24vh;
+    padding: 10px 10px 0 0;
+    /* 调整内边距 */
+    margin-top: 10px;
+    /* 添加顶部间距 */
 }
 
 .box {
@@ -101,13 +100,24 @@ import { ref } from 'vue'
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+.el-row {
+    height: 100%;
 }
 
 .middle {
-    margin-top: 35px;
-    margin-bottom: 20px;
-    height: 75%;
+    height: 100%;
+    /* 改为100% */
+    margin: 0;
+    /* 移除上下边距 */
 }
+
+/* .video-player {
+    height: 300px;
+} */
 
 .StuList {
     height: 100%;
