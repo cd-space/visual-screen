@@ -20,7 +20,10 @@
         <div class="table_main_body" 
              @wheel.prevent="handleWheel"
              @mouseenter="pauseScroll"
-             @mouseleave="resumeScroll">
+             @mouseleave="resumeScroll"
+             @touchmove="handleWheel"
+             @touchstart="pauseScroll"
+             @touchend="resumeScroll">
           <div class="table_inner_body" :style="{ top: tableTop + 'px' }">
             <div class="table_tr" v-for="(item, index) in tableList" :key="index"  @mouseenter="highlightRow(index)" @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
               <div class="tr1 tr">{{ item.id }}</div>
@@ -197,9 +200,10 @@ const resetHighlight = () => {
 .loading_div {
   color: #eee;
   width: 100%;
+  height: 10%;
   font-size: 23px;
-  margin: 15px 0 0px 0;
-  height: 5%;
+  padding: 15px 0 0px 0;
+  box-sizing: border-box;
 }
 .title_div {
   width: 100%;
@@ -207,7 +211,8 @@ const resetHighlight = () => {
 .table_body {
   width: 100%;
   height: 100%;
-  margin-top: 10px;
+  /* padding-top:  10px; */
+  box-sizing: border-box;
 }
 .table_th {
   width: 100%;
@@ -227,26 +232,32 @@ const resetHighlight = () => {
 .tr1 {
   width: 8%;
 }
+
 .tr2 {
   width: 18%;
 }
+
 .tr3 {
-  width:8%;
-  /* font-size: 13px; */
+  width: 8%;
 }
+
 .tr4 {
   width: 10%;
 }
+
 .tr5 {
   width: 20%;
 }
+
 .tr6 {
   width: 28%;
   font-size: 13px;
 }
+
 .tr7 {
   width: 8%;
 }
+
 .th_style {
   color: rgb(0, 221, 253);
   font-weight: bold;
@@ -260,7 +271,7 @@ const resetHighlight = () => {
 }
 .table_main_body {
   width: 100%;
-  height: 85%;
+  height: calc(100% - 40px);
   overflow: hidden;
   position: relative;
 }
@@ -280,24 +291,35 @@ const resetHighlight = () => {
   margin-top: 7px;
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
-.success_info_body{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .productProcess {
   width: 100%;
   height: 100%; 
 }
 
+.success_info_body{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .table_tr:hover {
-  background-color: rgba(3, 145, 167, 0.3); /* 鼠标悬停时的背景色 */
+  background-color: rgba(3, 145, 167, 0.3); 
 }
 
 /* 高亮显示的样式 */
 .table_tr.highlighted {
-  background-color: rgba(0, 221, 253, 0.5); /* 高亮时背景颜色 */
+  background-color: rgba(0, 221, 253, 0.5); 
+}
+
+.news-link {
+  color: #00ddfd; 
+  text-decoration: none; 
+}
+
+.news-link:hover {
+  text-decoration: underline; 
 }
 </style>

@@ -19,7 +19,7 @@ export const useCYRSStore = defineStore('xlsx', {
     // 加载并整理数据
     async loadStudentData() {
       try {
-        const response = await fetch('src/assets/参访企业.xlsx');
+        const response = await fetch('参访企业.xlsx');
         if (!response.ok) {
           console.error("加载文件失败，状态码:", response.status);
           return;

@@ -98,19 +98,7 @@ const tableActionFun = () => {
   }
 };
 
-// 填充表格数据（当数据过少时使用）
-// const fillTableList = () => {
-//   const addLength = visibleSize - tableListSize.value;
-//   for (let i = 0; i < addLength; i++) {
-//     tableList.value.push({
-//       planNo: '-',
-//       type: '-',
-//       startDate: '-',
-//       endDate: '-',
-//       process: '-',
-//     });
-//   }
-// };
+
 
 // 滚动计时器
 const tableTimerFun = () => {
@@ -194,9 +182,10 @@ const resetHighlight = () => {
 .loading_div {
   color: #eee;
   width: 100%;
-  height: 5%;
+  height: 10%;
   font-size: 23px;
-  margin: 15px 0 0px 0;
+  padding: 15px 0 0px 0;
+  box-sizing: border-box;
 }
 .title_div {
   width: 100%;
@@ -204,7 +193,8 @@ const resetHighlight = () => {
 .table_body {
   width: 100%;
   height: 100%;
-  margin-top: 10px;
+  /* padding-top:  10px; */
+  box-sizing: border-box;
 }
 .table_th {
   width: 100%;
@@ -247,7 +237,7 @@ const resetHighlight = () => {
 }
 .table_main_body {
   width: 100%;
-  height: 85%;
+  height: calc(100% - 40px);
   overflow: hidden;
   position: relative;
 }
@@ -270,32 +260,32 @@ const resetHighlight = () => {
 
 .productProcess {
   width: 100%;
-  height: 100%; /* 或者设置一个具体的高度 */
+  height: 100%; 
 }
 
 .success_info_body{
   width: 100%;
-  height: 100%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .table_tr:hover {
-  background-color: rgba(3, 145, 167, 0.3); /* 鼠标悬停时的背景色 */
+  background-color: rgba(3, 145, 167, 0.3); 
 }
 
 /* 高亮显示的样式 */
 .table_tr.highlighted {
-  background-color: rgba(0, 221, 253, 0.5); /* 高亮时背景颜色 */
+  background-color: rgba(0, 221, 253, 0.5); 
 }
 
 .news-link {
-  color: #00ddfd; /* 设置链接的颜色 */
-  text-decoration: none; /* 去掉默认的下划线 */
+  color: #00ddfd; 
+  text-decoration: none; 
 }
 
 .news-link:hover {
-  text-decoration: underline; /* 悬停时加下划线 */
+  text-decoration: underline; 
 }
 </style>

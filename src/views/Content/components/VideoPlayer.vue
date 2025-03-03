@@ -18,9 +18,10 @@
       autoplay: true,
       muted: true,
       controls: true,
+      loop: true,
       sources: [
         {
-          src: '/src/assets/videos/VID_20241101_203125.mp4',
+          src: '123456.mp4',
           type: 'video/mp4'
         }
       ],
@@ -39,7 +40,7 @@
   <style scoped>
   .video-player {
     width: 100%;
-    height: 60%;
+    height: 100%;
     margin: 0 auto;
 
   }
