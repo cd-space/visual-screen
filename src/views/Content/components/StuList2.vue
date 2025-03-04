@@ -16,8 +16,8 @@
           <div class="tr6 th_style">参观企业</div>
           <div class="tr7 th_style">积分</div>
         </div>
-        
-        <div class="table_main_body" 
+
+        <div class="table_main_body"
              @wheel.prevent="handleWheel"
              @mouseenter="pauseScroll"
              @mouseleave="resumeScroll"
@@ -44,7 +44,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
-
+import { useUserInfoStore } from '@/stores/stulist';
 // 定义状态
 const showFlag = ref(true);
 const tableTop = ref(0);
@@ -68,6 +68,8 @@ const resumeTimer = ref(null);
 const minTop = ref(-Infinity);
 const wheelTimeout = ref(null);
 
+const stores = useUserInfoStore();
+
 // 配置参数
 const title = '排产进度';
 const visibleSize = 2; // 容器内可视最大完整行数
@@ -81,6 +83,9 @@ onMounted(() => {
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
+  stores.loadExcelData('学生第二期.xlsx');
+  console.log(stores.data);
+
 });
 
 // 销毁时清除定时器
@@ -305,7 +310,7 @@ const resetHighlight = () => {
 
 .productProcess {
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 
 .success_info_body{
@@ -317,20 +322,20 @@ const resetHighlight = () => {
 }
 
 .table_tr:hover {
-  background-color: rgba(3, 145, 167, 0.3); 
+  background-color: rgba(3, 145, 167, 0.3);
 }
 
 /* 高亮显示的样式 */
 .table_tr.highlighted {
-  background-color: rgba(0, 221, 253, 0.5); 
+  background-color: rgba(0, 221, 253, 0.5);
 }
 
 .news-link {
-  color: #00ddfd; 
-  text-decoration: none; 
+  color: #00ddfd;
+  text-decoration: none;
 }
 
 .news-link:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 </style>

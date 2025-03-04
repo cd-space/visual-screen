@@ -38,34 +38,30 @@
 </template>
 
 <script setup>
-import { number } from 'echarts';
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
+import { useConInfoStore } from '@/stores/conList';
+// import { number } from 'echarts';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+
 
 // 定义状态
 const showFlag = ref(true);
 const tableTop = ref(0);
-const tableList = ref([
-  {company:"海尔",number:20,date:"2024.10.14",link:"https://www.douyin.com/"},
-  {company:"海尔2",number:20,date:"2024.10.14",link:"https://www.douyin.com/"},
-  {company:"海尔3",number:20,date:"2024.10.14",link:"https://www.douyin.com/"},
-  {company:"海尔4",number:20,date:"2024.10.14",link:"1111111111111"},
-  {company:"海尔5",number:20,date:"2024.10.14",link:"1111111111111"},
-  {company:"海尔6",number:20,date:"2024.10.14",link:"1111111111111"},
-  {company:"海尔7",number:20,date:"2024.10.14",link:"1111111111111"},
-  {company:"海尔8",number:20,date:"2024.10.14",link:"1111111111111"},
-
-]);
+const stores = useConInfoStore();
+const tableList = ref(0);
+// console.log("value:");
+// console.log(stores.value);
+// console.log("data:");
+// console.log(stores.data);
 
 const tableListSize = ref(0);
 const tableTimer = ref(null);
 const componentTimer = ref(null);
 const isManualScrolling = ref(false);
-const resumeTimer = ref(null);
 const minTop = ref(-Infinity);
 const wheelTimeout = ref(null);
 
 // 配置参数
-const title = '排产进度';
 const visibleSize = 2; // 容器内可视最大完整行数
 const lineHeight = 67; // 每行的实际高度（包含margin-top/bottom,border等）
 const componentTimerInterval = 3600000; // 刷新数据的时间间隔
@@ -73,10 +69,12 @@ const tableTimerInterval = 50; // 向上滚动 1px 所需要的时间，越小�
 const wheelStep = 50; // 每次滚动的步长
 
 // 初始化
-onMounted(() => {
+onMounted( () => {
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
+  stores.loadExcelData('参访企业.xlsx');
+
 });
 
 // 销毁时清除定时器
@@ -276,7 +274,7 @@ const resetHighlight = () => {
 
 .productProcess {
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 
 .success_info_body{
@@ -288,20 +286,20 @@ const resetHighlight = () => {
 }
 
 .table_tr:hover {
-  background-color: rgba(3, 145, 167, 0.3); 
+  background-color: rgba(3, 145, 167, 0.3);
 }
 
 /* 高亮显示的样式 */
 .table_tr.highlighted {
-  background-color: rgba(0, 221, 253, 0.5); 
+  background-color: rgba(0, 221, 253, 0.5);
 }
 
 .news-link {
-  color: #00ddfd; 
-  text-decoration: none; 
+  color: #00ddfd;
+  text-decoration: none;
 }
 
 .news-link:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 </style>
