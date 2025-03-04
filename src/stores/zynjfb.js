@@ -20,7 +20,7 @@ export const useChartDataStore = defineStore('chartData', {
 
     async loadStudentData() {
       try {
-        const response = await fetch('src/assets/学生第二期.xlsx');
+        const response = await fetch('学生第二期.xlsx');
         if (!response.ok) {
           console.error("加载文件失败，状态码:", response.status);
           return;

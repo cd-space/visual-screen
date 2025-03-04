@@ -5,13 +5,13 @@ import CYRS from '@/views/Content/components/cyrs.vue'
 import CFLC from '@/views/Content/components/cflc.vue'
 import ZYNJFB from '@/views/Content/components/zynjfb.vue'
 import ConList2 from './components/ConList2.vue';
-import StuList from './components/StuList.vue';
+
 import VideoPlayer from './components/VideoPlayer.vue'
 import ConCar1 from './components/ConCar1.vue'
 
-import StuList3 from './components/StuList3.vue';
+
 import StuList2 from './components/StuList2.vue';
-import StuList4 from './components/StuList4.vue';
+
 import { ref } from 'vue'
 
 </script>
@@ -21,55 +21,50 @@ import { ref } from 'vue'
 
     <div class="content">
         <div class="middle">
-            <div style="height: 17%; width: 100%;">
+            <div style="height: 17%; width: 100%; padding-top: 30px; box-sizing: border-box;">
                 <ConCar1></ConCar1>
             </div>
-            <div style="height: 83%; width: 100%;margin-top: 10px; display: flex;justify-content: space-between;">
-                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;;" class="box">
+            <div
+                style="height: 83%; width: 100%;padding-top: 10px; display: flex;justify-content: space-between;box-sizing: border-box">
+                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;;" class="box1">
                     <ConList2></ConList2>
                 </div>
-                <div style="width: 30%; height: 100%;">
+                <div style="width: 32%; height: 100%; padding: 0 10px;">
                     <VideoPlayer></VideoPlayer>
                 </div>
-                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;" class="box">
+                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;" class="box1">
                     <StuList2></StuList2>
                 </div>
             </div>
 
         </div>
 
-
         <div class="footer">
-            <el-row :gutter="20">
-                <el-col :span="4">
-                    <div class="box" style="padding: .04rem;">
-                        <LJSL></LJSL>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="box" style="padding: .04rem;">
-                        <CFLC></CFLC>
-                    </div>
-                </el-col>
-                <el-col :span="4">
-                    <div class="box" style="padding: .04rem;">
-                        <CYRS></CYRS>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="box" style="padding: .04rem;">
-                        <ZYNJFB></ZYNJFB>
-                    </div>
-                </el-col>
-                <el-col :span="4">
-                    <div class="box" style="padding: .04rem;">
-                        <BYQX></BYQX>
-                    </div>
-                </el-col>
-            </el-row>
+            <div class="box">
+                <LJSL></LJSL>
+            </div>
+            <div class="box">
+                <CFLC></CFLC>
+            </div>
+            <div class="box">
+                <CYRS></CYRS>
+            </div>
+
+
+            <div class="box">
+                <ZYNJFB></ZYNJFB>
+            </div>
+
+
+            <div class="box">
+                <BYQX></BYQX>
+            </div>
         </div>
 
+
+
     </div>
+
 </template>
 
 
@@ -78,22 +73,40 @@ import { ref } from 'vue'
 <style scoped>
 .content {
     width: 100%;
-    height: calc(66vh - 10px);
-    /* 减去间距的高度 */
-    background-size: cover;
-    background-position: center;
+    height: 100%;
     padding: 10px;
+    box-sizing: border-box
 }
 
+/* .footer {
+    width: 100%;
+    height: 30%;
+    padding: 20px 0;
+    box-sizing: border-box;
+} */
+
 .footer {
-    height: 24vh;
-    padding: 10px 10px 0 0;
-    /* 调整内边距 */
-    margin-top: 10px;
-    /* 添加顶部间距 */
+    gap: 10px;
+    width: 100%;
+    height: 30%;
+    padding: 20px 0;
+    box-sizing: border-box;
+    display: flex;
 }
 
 .box {
+    width: calc(100% - 40px);
+    height: 100%;
+    background-image: url('/src/assets/images/panel.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box
+}
+
+.box1 {
     width: 100%;
     height: 100%;
     background-image: url('/src/assets/images/panel.png');
@@ -102,6 +115,7 @@ import { ref } from 'vue'
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box
 }
 
 .el-row {
@@ -111,10 +125,8 @@ import { ref } from 'vue'
 }
 
 .middle {
-    height: 100%;
-    /* 改为100% */
+    height: 70%;
     margin: 0;
-    /* 移除上下边距 */
 }
 
 /* .video-player {

@@ -14,7 +14,11 @@
           <div class="tr4 th_style">新闻链接</div>
         </div>
 
-        <div class="table_main_body" @wheel.prevent="handleWheel" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
+        <div class="table_main_body" @wheel.prevent="handleWheel"
+         @mouseenter="pauseScroll"
+          @mouseleave="resumeScroll"
+          @touchmove="handleWheel"
+          @touchstart="handleTouchStart">
           <div class="table_inner_body" :style="{ top: tableTop + 'px' }">
             <div class="table_tr" v-for="(item, index) in tableList" :key="index" @mouseenter="highlightRow(index)"
               @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
@@ -98,19 +102,7 @@ const tableActionFun = () => {
   }
 };
 
-// 填充表格数据（当数据过少时使用）
-// const fillTableList = () => {
-//   const addLength = visibleSize - tableListSize.value;
-//   for (let i = 0; i < addLength; i++) {
-//     tableList.value.push({
-//       planNo: '-',
-//       type: '-',
-//       startDate: '-',
-//       endDate: '-',
-//       process: '-',
-//     });
-//   }
-// };
+
 
 // 滚动计时器
 const tableTimerFun = () => {
@@ -146,21 +138,33 @@ const resumeScroll = () => {
   }
 };
 
-// 处理滚轮事件
+// 记录触摸开始位置
+const touchStartY = ref(0);
+
+const handleTouchStart = (event) => {
+  touchStartY.value = event.touches[0].clientY;
+};
+
 const handleWheel = (event) => {
   if (!wheelTimeout.value) {
-    const delta = Math.sign(event.deltaY) * wheelStep;
+    let delta;
+    if (event.type === 'wheel') {
+      delta = Math.sign(event.deltaY) * wheelStep;
+    } else if (event.type === 'touchmove') {
+      const touch = event.touches[0];
+      delta = Math.sign(touch.clientY - touchStartY.value) * wheelStep;
+      touchStartY.value = touch.clientY;
+    }
+
     let newTop = tableTop.value + delta;
-
     newTop = Math.min(Math.max(newTop, minTop.value), 0);
-
     tableTop.value = newTop;
 
     wheelTimeout.value = setTimeout(() => {
       wheelTimeout.value = null;
     }, 50);
   }
-  event.preventDefault();
+  // event.preventDefault();
 };
 
 // 计算最小 top 值
@@ -194,8 +198,10 @@ const resetHighlight = () => {
 .loading_div {
   color: #eee;
   width: 100%;
+  height: 10%;
   font-size: 23px;
-  margin: 15px 0 0px 0;
+  padding: 15px 0 0px 0;
+  box-sizing: border-box;
 }
 .title_div {
   width: 100%;
@@ -203,7 +209,8 @@ const resetHighlight = () => {
 .table_body {
   width: 100%;
   height: 100%;
-  margin-top: 10px;
+  /* padding-top:  10px; */
+  box-sizing: border-box;
 }
 .table_th {
   width: 100%;
@@ -246,7 +253,7 @@ const resetHighlight = () => {
 }
 .table_main_body {
   width: 100%;
-  height: 40vh;
+  height: calc(100% - 40px);
   overflow: hidden;
   position: relative;
 }
@@ -266,33 +273,35 @@ const resetHighlight = () => {
   margin-top: 7px;
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
-/* .success_info_body{
+
+.productProcess {
   width: 100%;
-  height: 100%;
+  height: 100%; 
+}
+
+.success_info_body{
+  width: 100%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
-.productProcess {
-  width: 100%;
-  height: 100%; /* 或者设置一个具体的高度 */
 }
 
 .table_tr:hover {
-  background-color: rgba(3, 145, 167, 0.3); /* 鼠标悬停时的背景色 */
+  background-color: rgba(3, 145, 167, 0.3); 
 }
 
 /* 高亮显示的样式 */
 .table_tr.highlighted {
-  background-color: rgba(0, 221, 253, 0.5); /* 高亮时背景颜色 */
+  background-color: rgba(0, 221, 253, 0.5); 
 }
 
 .news-link {
-  color: #00ddfd; /* 设置链接的颜色 */
-  text-decoration: none; /* 去掉默认的下划线 */
+  color: #00ddfd; 
+  text-decoration: none; 
 }
 
 .news-link:hover {
-  text-decoration: underline; /* 悬停时加下划线 */
+  text-decoration: underline; 
 }
 </style>

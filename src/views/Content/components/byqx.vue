@@ -1,7 +1,7 @@
 <template>
   <div class="byqx">毕业意向</div>
   <!-- 设置一个 div 来承载 ECharts 图表，指定宽高 -->
-  <div ref="chart" style="width: 110%; height: 100%;"></div>
+  <div ref="chart" style="width: 100%; height: 100%;"></div>
 </template>
 
 <script>
