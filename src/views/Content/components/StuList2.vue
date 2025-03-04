@@ -22,8 +22,8 @@
              @mouseenter="pauseScroll"
              @mouseleave="resumeScroll"
              @touchmove="handleWheel"
-             @touchstart="pauseScroll"
-             @touchend="resumeScroll">
+             
+            >
           <div class="table_inner_body" :style="{ top: tableTop + 'px' }">
             <div class="table_tr" v-for="(item, index) in tableList" :key="index"  @mouseenter="highlightRow(index)" @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
               <div class="tr1 tr">{{ item.id }}</div>
@@ -163,12 +163,11 @@ const handleWheel = (event) => {
     newTop = Math.min(Math.max(newTop, minTop.value), 0);
 
     tableTop.value = newTop;
-
     wheelTimeout.value = setTimeout(() => {
       wheelTimeout.value = null;
     }, 50);
   }
-  event.preventDefault();
+  // event.preventDefault();
 };
 
 // 计算最小 top 值
