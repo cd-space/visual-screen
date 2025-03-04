@@ -41,7 +41,7 @@ import { ref } from 'vue'
         </div>
 
         <div class="footer">
-            <div class="box" >
+            <div class="box">
                 <LJSL></LJSL>
             </div>
             <div class="box">
@@ -74,7 +74,7 @@ import { ref } from 'vue'
 <style scoped>
 .content {
     width: 100%;
-    height: 100% ;
+    height: 100%;
     padding: 10px;
     box-sizing: border-box
 }
@@ -106,6 +106,7 @@ import { ref } from 'vue'
     flex-direction: column;
     box-sizing: border-box
 }
+
 .box1 {
     width: 100%;
     height: 100%;
@@ -124,10 +125,20 @@ import { ref } from 'vue'
     padding: 0;
 }
 
+.el-col {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .middle {
     height: 70%;
     margin: 0;
 }
+
+/* .video-player {
+    height: 300px;
+} */
 
 .StuList {
     height: 100%;

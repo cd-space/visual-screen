@@ -1,5 +1,6 @@
 <template>
-  <div ref="chart" style="width: 100%; height: 100%;"></div>
+  <div class="byqx">参访里程</div>
+  <div ref="chart" style="width: 100%; height:100%;"></div>
 </template>
 
 <script>
@@ -23,14 +24,7 @@ export default {
         //console.log("vue文件数据:", rawData); // 输出 ECharts 配置中使用的数据
         // 配置图表选项
         const option = {
-          title: {
-            text: '参访里程',
 
-            left: 10,
-            textStyle: {
-              color: 'rgba(255, 255, 255, 1)',
-            },
-          },
           tooltip: {
             trigger: 'axis', // 鼠标悬停显示提示
           },
@@ -157,5 +151,11 @@ export default {
 </script>
 
 <style scoped>
-/* 样式自定义 */
+.byqx {
+  float: left;
+  font-size: larger;
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  margin-left: 5%;
+}
 </style>

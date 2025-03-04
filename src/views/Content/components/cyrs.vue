@@ -1,5 +1,6 @@
 <template>
-  <div ref="chart" style="width: 100%; height: 200px;"></div>
+  <div class="byqx">参与人数</div>
+  <div ref="chart" style="width: 100%; height: 100%;"></div>
 </template>
 
 <script>
@@ -21,13 +22,7 @@ export default {
         //console.log("vue文件数据:", rawData);
 
         const option = {
-          title: {
-            text: '参与人数',
-            left: 'left',
-            textStyle: {
-              color: "rgba(255, 255, 255, 1)",
-            },
-          },
+
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -133,5 +128,11 @@ export default {
 </script>
 
 <style scoped>
-/* 根据需要调整图表容器样式 */
+.byqx {
+  float: left;
+  font-size: larger;
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  margin-left: 5%;
+}
 </style>

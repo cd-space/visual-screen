@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <div class="title" >累计数量</div>
-    <div class="chart"></div>
-    <div ref="chart" id="chart1" style="width: 100%; height: 100%;" ></div>
+  <div class="container">
+    <div class="title">累计数量</div>
+    <div ref="chart" class="chart"></div>
   </div>
 </template>
 
@@ -29,7 +28,7 @@ const initChart = (value) => {
           color: '#fff',
         },
         x: 'center',
-        y: '38%',
+        y: '58%',
       },
       series: [
         {
@@ -103,6 +102,13 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   float: left;
   font-size: larger;
@@ -110,8 +116,11 @@ onBeforeUnmount(() => {
   color: rgb(255, 255, 255);
   margin-left: 5%;
 }
+
 .chart {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  /* 使图表在容器中居中 */
 }
 </style>
