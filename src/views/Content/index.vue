@@ -14,6 +14,7 @@ import StuList2 from './components/StuList2.vue';
 
 import { ref } from 'vue'
 
+
 </script>
 
 <template>
