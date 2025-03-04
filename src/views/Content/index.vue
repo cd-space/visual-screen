@@ -106,6 +106,8 @@ import { ref } from 'vue'
 
 .el-row {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .middle {
