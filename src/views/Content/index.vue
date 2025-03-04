@@ -124,6 +124,12 @@ import { ref } from 'vue'
     padding: 0;
 }
 
+.el-col {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .middle {
     height: 70%;
     margin: 0;
