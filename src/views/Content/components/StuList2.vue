@@ -22,7 +22,7 @@
              @mouseenter="pauseScroll"
              @mouseleave="resumeScroll"
              @touchmove="handleWheel"
-             
+              @touchstart="handleTouchStart"
             >
           <div class="table_inner_body" :style="{ top: tableTop + 'px' }">
             <div class="table_tr" v-for="(item, index) in tableList" :key="index"  @mouseenter="highlightRow(index)" @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
@@ -154,22 +154,34 @@ const resumeScroll = () => {
   }
 };
 
-// 处理滚轮事件
+// 记录触摸开始位置
+const touchStartY = ref(0);
+
+const handleTouchStart = (event) => {
+  touchStartY.value = event.touches[0].clientY;
+};
+
 const handleWheel = (event) => {
   if (!wheelTimeout.value) {
-    const delta = Math.sign(event.deltaY) * wheelStep;
+    let delta;
+    if (event.type === 'wheel') {
+      delta = Math.sign(event.deltaY) * wheelStep;
+    } else if (event.type === 'touchmove') {
+      const touch = event.touches[0];
+      delta = Math.sign(touch.clientY - touchStartY.value) * wheelStep;
+      touchStartY.value = touch.clientY;
+    }
+
     let newTop = tableTop.value + delta;
-
     newTop = Math.min(Math.max(newTop, minTop.value), 0);
-
     tableTop.value = newTop;
+
     wheelTimeout.value = setTimeout(() => {
       wheelTimeout.value = null;
     }, 50);
   }
   // event.preventDefault();
 };
-
 // 计算最小 top 值
 const calculateMinTop = () => {
   const containerHeight = 294; // 对应.table_main_body的高度

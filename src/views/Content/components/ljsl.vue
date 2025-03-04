@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="title">累计数量</div>
-    <div ref="chart" style="width: 100%; height: 200px;"></div>
+    <div class="title" >累计数量</div>
+    <div class="chart"></div>
+    <div ref="chart" id="chart1" style="width: 100%; height: 100%;" ></div>
   </div>
 </template>
 
@@ -108,5 +109,9 @@ onBeforeUnmount(() => {
   font-weight: bolder;
   color: rgb(255, 255, 255);
   margin-left: 5%;
+}
+.chart {
+  width: 100%;
+  height: 100%;
 }
 </style>
