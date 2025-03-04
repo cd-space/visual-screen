@@ -107,8 +107,6 @@ export const useChartDataStore = defineStore('chartData', {
       this.studentData.source.length = 0;  // 清空数组内容
       this.studentData.source.push(...formattedData);  // 将新的数据推送到数组中
 
-      console.log("专业年级分布 ", this.studentData.source);
-      console.log("毕业意向统计 ", this.byqx.source);
     },
   },
 });

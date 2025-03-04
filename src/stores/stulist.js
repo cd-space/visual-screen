@@ -28,7 +28,7 @@ const useUserInfoStore = defineStore('userInfo', {
         // 提取指定列的数据
         this.data = jsonData.map(row => columnsToExtract.map(index => row[index]));
 
-        console.log(this.data); // 输出提取的数据
+
       } catch (error) {
         console.error("Error loading Excel data:", error);
       }

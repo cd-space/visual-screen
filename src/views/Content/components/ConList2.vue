@@ -40,7 +40,7 @@
 <script setup>
 import { useConInfoStore } from '@/stores/conList';
 // import { number } from 'echarts';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 
 
 
@@ -48,7 +48,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 const showFlag = ref(true);
 const tableTop = ref(0);
 const stores = useConInfoStore();
-const tableList = ref(0);
+const tableList = ref([]);
+
 // console.log("value:");
 // console.log(stores.value);
 // console.log("data:");
@@ -69,12 +70,19 @@ const tableTimerInterval = 50; // 向上滚动 1px 所需要的时间，越小�
 const wheelStep = 50; // 每次滚动的步长
 
 // 初始化
-onMounted( () => {
+onMounted( async () => {
+  await stores.loadExcelData('参访企业.xlsx');
+  tableList.value = stores.data; // 将数据赋值给 tableList
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
   stores.loadExcelData('参访企业.xlsx');
 
+});
+// 监听 stores.data 的变化
+watch(() => stores.data, (newData) => {
+  tableList.value = newData;
+  tableActionFun();
 });
 
 // 销毁时清除定时器

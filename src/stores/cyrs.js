@@ -78,9 +78,7 @@ export const useCYRSStore = defineStore('xlsx', {
         ];
         this.CFLCData.source = visitStats;
 
-        console.log("参与人数数据:", this.CYRSData.source);
-        console.log("参访历程数据:", this.CFLCData.source);
-        console.log("企业数量:", this.LJSL);
+
         
       } catch (error) {
         console.error("加载 Excel 文件失败：", error);
