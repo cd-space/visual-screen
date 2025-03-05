@@ -20,6 +20,21 @@ const useConInfoStore = defineStore("conInfo", {
 
         // 初始化一个空数组来存储有效的行
         const validRows = [];
+<<<<<<< HEAD
+=======
+
+        // 从第三行开始逐行检查
+        for (let rowIndex = range.s.r; rowIndex <= range.e.r; rowIndex++) {
+          const row = XLSX.utils.sheet_to_json(firstSheet, { header: 1, range: { s: { r: rowIndex, c: 0 }, e: { r: rowIndex, c: range.e.c } } })[0];
+          // 检查当前行是否为空
+          if (row.some(cell => cell!== undefined)) {
+            validRows.push(row);
+          } else {
+            // 如果当前行为空，停止读取
+            break;
+          }
+        }
+>>>>>>> bca9891cdbc6503202ea54bc6118a3971b681ad2
 
         // 从第三行开始逐行检查
         for (let rowIndex = range.s.r; rowIndex <= range.e.r; rowIndex++) {
@@ -33,6 +48,7 @@ const useConInfoStore = defineStore("conInfo", {
           }
         }
 
+<<<<<<< HEAD
         // 指定需要提取的列（索引从0开始），并对应上 key
         const columnsToExtract = [
           { index: 0, key: "company" },
@@ -53,6 +69,13 @@ const useConInfoStore = defineStore("conInfo", {
         // 这里你之前的 this.setData 逻辑可能需要根据新的数据结构调整，这里先注释掉
         // this.setData = this.data.map(row => new Set(row));
         console.log(this.data);
+=======
+        // 提取指定列的数据
+        this.data = validRows.map(row => columnsToExtract.map(index => row[index]));
+
+        this.setData = this.data.map(row => new Set(row));
+        // console.log(this.setData);
+>>>>>>> bca9891cdbc6503202ea54bc6118a3971b681ad2
 
       } catch (error) {
         console.error("Error loading Excel data:", error);
