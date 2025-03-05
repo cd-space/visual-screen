@@ -14,21 +14,34 @@ const useConInfoStore = defineStore("conInfo", {
         const workbook = XLSX.read(data); // 读取工作簿
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]]; // 获取第一个工作表
 
-        // 从第三行开始读取数据，直到最后一行
+        // 从第三行开始读取数据
         const range = XLSX.utils.decode_range(firstSheet["!ref"]); // 获取工作表的范围
         range.s.r = 2; // 设置起始行为第三行（索引从0开始）
-        range.e.r = 8;
 
-        // 将工作表转换为JSON格式，从第三行开始读取
-        const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1, range }); // 以数组形式返回每行
+        // 初始化一个空数组来存储有效的行
+        const validRows = [];
+
+        // 从第三行开始逐行检查
+        for (let rowIndex = range.s.r; rowIndex <= range.e.r; rowIndex++) {
+          const row = XLSX.utils.sheet_to_json(firstSheet, { header: 1, range: { s: { r: rowIndex, c: 0 }, e: { r: rowIndex, c: range.e.c } } })[0];
+          // 检查当前行是否为空
+          if (row.some(cell => cell!== undefined)) {
+            validRows.push(row);
+          } else {
+            // 如果当前行为空，停止读取
+            break;
+          }
+        }
 
         // 指定需要提取的列（索引从0开始）
         const columnsToExtract = [0, 1, 5, 7];
 
         // 提取指定列的数据
-        this.data = jsonData.map(row => columnsToExtract.map(index => row[index]));
+        this.data = validRows.map(row => columnsToExtract.map(index => row[index]));
 
-        console.log(this.data); // 输出提取的数据
+        this.setData = this.data.map(row => new Set(row));
+        // console.log(this.setData);
+
       } catch (error) {
         console.error("Error loading Excel data:", error);
       }
