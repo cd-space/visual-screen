@@ -25,6 +25,7 @@ export default {
     const chartDataStore = useChartDataStore();
     await chartDataStore.loadStudentData();
     this.optionData = chartDataStore.byqx.source;
+    console.log(this.optionData);
     this.setLabel();
     this.initChart();
 

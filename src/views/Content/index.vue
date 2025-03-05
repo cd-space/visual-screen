@@ -51,11 +51,9 @@ import { ref } from 'vue'
                 <CYRS></CYRS>
             </div>
 
-
             <div class="box">
                 <ZYNJFB></ZYNJFB>
             </div>
-
 
             <div class="box">
                 <BYQX></BYQX>

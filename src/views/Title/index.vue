@@ -20,32 +20,35 @@ import Time from './components/Time.vue'
 </script>
 
 <style scoped>
-.head{
+.head {
     width: 100vw;
     height: 7vh;
     display: flex;
 }
+
 .badge-img {
-  max-width: 60%; 
-  max-height: 60%; 
-  object-fit: contain; 
-  margin-bottom: 5px;
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: contain;
+    margin-bottom: 5px;
 }
+
 .title {
     color: white;
     font-size: 40px;
     font-weight: bold;
 
-    margin-top:-9px ;
+    margin-top: -9px;
 }
-.image-col{
-    margin-top:9px ;
+
+.image-col {
+    margin-top: 9px;
 }
-.title-text{
+
+.title-text {
     font-size: 1.8vw;
     color: white;
     margin-bottom: 10px;
+    font-weight: bold;
 }
-
-
 </style>
