@@ -1,163 +1,102 @@
 <template>
   <div class="byqx">毕业意向</div>
   <!-- 设置一个 div 来承载 ECharts 图表，指定宽高 -->
-  <div ref="chart" style="width: 100%; height: 100%;"></div>
+  <div ref="chartRef" style="width: 100%; height: 100%;"></div>
 </template>
 
-<script>
+<script setup>
 import * as echarts from 'echarts';
-import 'echarts-gl';
-import { getPie3D, getParametricEquation } from '@/utils/chart.js';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useChartDataStore } from '@/stores/zynjfb.js';
 
-const color = ['#56e8db', '#004abf'];
+// 定义 chartRef 引用
+const chartRef = ref(null);
+let myChart = null;
+const chartDataStore = useChartDataStore();
 
-export default {
-  name: 'Chart3D',
-  data() {
-    return {
-      optionData: [],
-      statusChart: null,
-      option: {}
-    };
-  },
-  async mounted() {
-    const chartDataStore = useChartDataStore();
-    await chartDataStore.loadStudentData();
-    this.optionData = chartDataStore.byqx.source;
-    console.log(this.optionData);
-    this.setLabel();
-    this.initChart();
+onMounted(async () => {
+  // 加载学生数据
+  await chartDataStore.loadStudentData();
 
-    window.addEventListener('resize', this.changeSize);
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.changeSize);
-    if (this.statusChart) {
-      this.statusChart.dispose();
-    }
-  },
-  methods: {
-    setLabel() {
-      this.optionData.forEach((item, index) => {
-        item.itemStyle = { color: color[index] };
-        item.label = {
-          show: true,
-          color: color[index],
-          formatter: ['{b|{b}}', '{c|{c}}{b|人}', '{d|{d}%}'].join('\n'),
-          rich: {
-            b: { color: '#fff', lineHeight: 25, align: 'left' },
-            c: {
-              fontSize: 10,
-              color: '#fff',
-              textShadowColor: '#1c90a6',
-              textShadowOffsetX: 0,
-              textShadowOffsetY: 2,
-              textShadowBlur: 5
-            },
-            d: { fontSize: 10, color: '#fff', align: 'left' }
-          }
-        };
-        item.labelLine = {
-          lineStyle: { width: 1, color: 'rgba(255,255,255,0.7)' }
-        };
-      });
+  // 获取毕业意向数据
+  const byqxData = chartDataStore.byqx.source;
+
+  // 初始化 ECharts 实例
+  myChart = echarts.init(chartRef.value);
+
+  // 配置 ECharts 选项
+  const option = {
+    // 设置全局调色盘
+    color: ['#2ee8b7', '#01368d', '#675bba'],
+    tooltip: {
+      trigger: 'item'
     },
-    initChart() {
-      this.statusChart = echarts.init(this.$refs.chart);
-      this.option = getPie3D(this.optionData, 0.8, 240, 28, 26, 0.5);
-      this.statusChart.setOption(this.option);
-
-      this.option.series.push({
-        name: '毕业去向',
+    legend: {
+      orient: 'vertical',
+      top: 0,
+      right: 5,
+      textStyle: {
+        color: 'rgba(255, 255, 255, 1)',
+      },
+      width: 120
+    },
+    series: [
+      {
+        name: '毕业意向',
         type: 'pie',
-        label: { opacity: 1, fontSize: 13, lineHeight: 20 },
-        startAngle: -40,
-        clockwise: false,
-        radius: ['20%', '50%'],
-        center: ['50%', '50%'],
-        data: this.optionData,
-        itemStyle: { opacity: 0 }
-      });
-      this.statusChart.setOption(this.option);
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        // 设置扇区间隙角度
+        padAngle: 5,
+        itemStyle: {
+          borderRadius: 10
+        },
+        label: {
+          show: true, // 显示标签
+          position: 'outside' // 标签位置设置为扇形外部
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 20,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: true, // 显示提示线
+          length: 20, // 第一段长度
+          length2: 15, // 第二段长度
+          smooth: true, // 平滑提示线
+          lineStyle: {
+            color: '#999', // 提示线颜色
+            width: 1, // 线宽
+            type: 'solid' // 线条类型为实线
+          }
+        },
+        data: byqxData
+      }
+    ]
+  };
 
-      this.bindListen(this.statusChart);
-    },
-    bindListen(myChart, optionName = 'option') {
-      let selectedIndex = '';
-      let hoveredIndex = '';
+  // 设置 ECharts 选项
+  myChart.setOption(option);
 
-      myChart.on('click', (params) => {
-        const isSelected = !this[optionName].series[params.seriesIndex].pieStatus.selected;
-        const k = this[optionName].series[params.seriesIndex].pieStatus.k;
-        const startRatio = this[optionName].series[params.seriesIndex].pieData.startRatio;
-        const endRatio = this[optionName].series[params.seriesIndex].pieData.endRatio;
-
-        if (selectedIndex !== '' && selectedIndex !== params.seriesIndex) {
-          this[optionName].series[selectedIndex].parametricEquation = getParametricEquation(
-            this[optionName].series[selectedIndex].pieData.startRatio,
-            this[optionName].series[selectedIndex].pieData.endRatio,
-            false,
-            false,
-            k,
-            this[optionName].series[selectedIndex].pieData.value
-          );
-          this[optionName].series[selectedIndex].pieStatus.selected = false;
-        }
-
-        this[optionName].series[params.seriesIndex].parametricEquation = getParametricEquation(
-          startRatio,
-          endRatio,
-          isSelected,
-          false,
-          k,
-          this[optionName].series[params.seriesIndex].pieData.value
-        );
-        this[optionName].series[params.seriesIndex].pieStatus.selected = isSelected;
-        selectedIndex = isSelected ? params.seriesIndex : null;
-        myChart.setOption(this[optionName]);
-      });
-
-      myChart.on('mouseover', (params) => {
-        if (hoveredIndex === params.seriesIndex) return;
-        if (hoveredIndex !== '') {
-          this.updateHoverEffect(hoveredIndex, false, optionName);
-          hoveredIndex = '';
-        }
-        if (params.seriesName !== 'mouseoutSeries' && params.seriesName !== 'pie2d') {
-          this.updateHoverEffect(params.seriesIndex, true, optionName, 60);
-          hoveredIndex = params.seriesIndex;
-        }
-        myChart.setOption(this[optionName]);
-      });
-
-      myChart.on('globalout', () => {
-        if (hoveredIndex !== '') {
-          this.updateHoverEffect(hoveredIndex, false, optionName);
-          hoveredIndex = '';
-        }
-        myChart.setOption(this[optionName]);
-      });
-    },
-    updateHoverEffect(index, isHovered, optionName, hoverValue = 0) {
-      const series = this[optionName].series[index];
-      const { startRatio, endRatio, value } = series.pieData;
-      const { selected, k } = series.pieStatus;
-      series.parametricEquation = getParametricEquation(
-        startRatio,
-        endRatio,
-        selected,
-        isHovered,
-        k,
-        value + hoverValue
-      );
-      series.pieStatus.hovered = isHovered;
-    },
-    changeSize() {
-      this.statusChart.resize();
+  // 监听窗口大小变化，重新调整图表大小
+  const resizeHandler = () => {
+    if (myChart) {
+      myChart.resize();
     }
-  }
-};
+  };
+  window.addEventListener('resize', resizeHandler);
+
+  // 在组件销毁前移除事件监听器
+  onBeforeUnmount(() => {
+    if (myChart) {
+      myChart.dispose();
+    }
+    window.removeEventListener('resize', resizeHandler);
+  });
+});
 </script>
 
 <style scoped>
