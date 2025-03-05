@@ -15,15 +15,11 @@ export default {
     let timer = null;
     // 获取Pinia store中的数据
     const chartDataStore = useChartDataStore();
-    console.log("vue测试", chartDataStore.studentData);
+
     // 初始化图表
     const initChart = () => {
       if (chart.value) {
         myChart = echarts.init(chart.value);
-
-        // 从store中获取处理后的数据
-        // console.log("vue测试数据", ZYData);
-        //console.log("vue测试数据1", zyStore.studentData);
 
         const option = {
 
@@ -34,17 +30,20 @@ export default {
             },
           },
           legend: {
+            type: 'scroll',
             orient: 'horizontal',
-            right: 20,
-            top: 20,
+            itemWidth: 10,
+            right: 0,
+            top: 0,
             data: ['2021', '2022', '2023', '2024'],
             textStyle: {
               color: 'rgba(255, 255, 255, 1)',
             },
+            width: 120
           },
           grid: {
 
-            height: 120,
+            height: 100,
             bottom: 30,
 
           },

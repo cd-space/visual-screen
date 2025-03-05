@@ -8,7 +8,7 @@
       <!-- 参数名称、列数根据实际情况调整 -->
       <div class="table_body">
         <div class="table_th">
-          <div class="tr1 th_style">排名</div>
+          <div class="tr1 th_style">排名<div class="tr">排名</div></div>
           <div class="tr2 th_style">姓名</div>
           <div class="tr3 th_style">性别</div>
           <div class="tr4 th_style">年级</div>
@@ -73,20 +73,28 @@ const stores = useUserInfoStore();
 // 配置参数
 const title = '排产进度';
 const visibleSize = 2; // 容器内可视最大完整行数
-const lineHeight = 67; // 每行的实际高度（包含margin-top/bottom,border等）
+const lineHeight = 40; // 每行的实际高度（包含margin-top/bottom,border等）
 const componentTimerInterval = 3600000; // 刷新数据的时间间隔
 const tableTimerInterval = 50; // 向上滚动 1px 所需要的时间，越小越快，推荐值 100
 const wheelStep = 50; // 每次滚动的步长
 
 // 初始化
-onMounted(() => {
+onMounted(async () => {
+  await stores.loadExcelData('学生第二期.xlsx');
+  tableList.value = stores.data;
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
   stores.loadExcelData('学生第二期.xlsx');
-  console.log(stores.data);
 
 });
+
+// 监听 stores.data 的变化
+watch(() => stores.data, (newData) => {
+  tableList.value = newData;
+  tableActionFun();
+});
+
 
 // 销毁时清除定时器
 onBeforeUnmount(() => {
@@ -214,11 +222,12 @@ const resetHighlight = () => {
   height: 100%;
 }
 .loading_div {
+  position: relative;
   color: #eee;
   width: 100%;
   height: 10%;
-  font-size: 23px;
-  padding: 15px 0 0px 0;
+  font-size: 1.5vw;
+  padding: 0px 0 0px 4px;
   box-sizing: border-box;
 }
 .title_div {
@@ -243,18 +252,18 @@ const resetHighlight = () => {
   box-sizing: border-box;
   padding: 0 5px;
   text-align: center;
-  font-size: 14px;
+  font-size: 10px;
 }
 .tr1 {
-  width: 8%;
+  width: 10%;
 }
 
 .tr2 {
-  width: 18%;
+  width: 16%;
 }
 
 .tr3 {
-  width: 8%;
+  width: 10%;
 }
 
 .tr4 {
@@ -266,18 +275,18 @@ const resetHighlight = () => {
 }
 
 .tr6 {
-  width: 28%;
-  font-size: 13px;
+  width: 24%;
+
 }
 
 .tr7 {
-  width: 8%;
+  width: 10%;
 }
 
 .th_style {
   color: rgb(0, 221, 253);
-  font-weight: bold;
-  font-size: 18px;
+  /* font-weight: bold; */
+  font-size: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -298,13 +307,13 @@ const resetHighlight = () => {
 }
 .table_tr {
   display: flex;
-  height: 60px;
-  line-height: 60px;
+  height: 30px;
+  line-height: 30px;
   color: #eee;
   font-size: 25px;
   background: rgba(3, 145, 167, 0.1);
   border: 1px solid rgb(4, 114, 131);
-  margin-top: 7px;
+  margin-top: 0px;
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
 

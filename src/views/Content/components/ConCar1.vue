@@ -106,7 +106,7 @@ onMounted(() => {
   height: 80px;
   object-fit: contain;
   transition: transform 0.2s ease;
-  border-radius: 25%;
+  border-radius: 20px;
 }
 
 .badge-img:hover {

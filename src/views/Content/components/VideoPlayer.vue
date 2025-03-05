@@ -21,7 +21,7 @@
       loop: true,
       sources: [
         {
-          src: '123456.mp4',
+          src: '1234.mp4',
           type: 'video/mp4'
         }
       ],

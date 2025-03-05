@@ -21,8 +21,7 @@ export default {
       if (chart.value) {
         // 初始化图表
         myChart = echarts.init(chart.value);
-        //console.log("vue文件数据:", rawData); // 输出 ECharts 配置中使用的数据
-        // 配置图表选项
+
         const option = {
 
           tooltip: {
@@ -30,7 +29,7 @@ export default {
           },
           dataset: rawData,
           grid: {
-            height: 120,
+            height: 100,
             bottom: 30,
           },
           xAxis: {

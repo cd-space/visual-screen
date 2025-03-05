@@ -22,18 +22,18 @@ import { ref } from 'vue'
 
     <div class="content">
         <div class="middle">
-            <div style="height: 17%; width: 100%; padding-top: 30px; box-sizing: border-box;">
+            <div style="height: 17%; width: 100%;  box-sizing: border-box;">
                 <ConCar1></ConCar1>
             </div>
             <div
                 style="height: 83%; width: 100%;padding-top: 10px; display: flex;justify-content: space-between;box-sizing: border-box">
-                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;;" class="box1">
+                <div style="width: 30%; height: 100%;padding: 0px 0px 25px 0px;" class="box1">
                     <ConList2></ConList2>
                 </div>
-                <div style="width: 32%; height: 100%; padding: 0 10px;">
+                <div class="video-container">
                     <VideoPlayer></VideoPlayer>
                 </div>
-                <div style="width: 34%; height: 100%;padding: 0px 25px 25px 25px;" class="box1">
+                <div style="width: 30%; height: 100%;padding: 0px 0px 10px 0px;" class="box1">
                     <StuList2></StuList2>
                 </div>
             </div>
@@ -50,13 +50,9 @@ import { ref } from 'vue'
             <div class="box">
                 <CYRS></CYRS>
             </div>
-
-
             <div class="box">
                 <ZYNJFB></ZYNJFB>
             </div>
-
-
             <div class="box">
                 <BYQX></BYQX>
             </div>
@@ -72,10 +68,17 @@ import { ref } from 'vue'
 
 
 <style scoped>
+.video-container {
+    height: 100%;
+  /* width: 30%; */
+  aspect-ratio: 4 / 3; 
+  padding: 0 9px;
+}
+
 .content {
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box
 }
 
@@ -90,7 +93,7 @@ import { ref } from 'vue'
     gap: 10px;
     width: 100%;
     height: 30%;
-    padding: 20px 0;
+    padding: 10px 0;
     box-sizing: border-box;
     display: flex;
 }

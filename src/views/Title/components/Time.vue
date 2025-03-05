@@ -1,4 +1,5 @@
 <template>
+  <div style="position: relative ;left: -10px;">
   <div class="datetime">
     <span class="time">{{ currentDateTime.year }}</span>
     <span class="datetime">年</span>
@@ -12,8 +13,8 @@
     <span class="datetime">分</span>
     <span class="time">{{ currentDateTime.second }}</span>
     <span class="datetime">秒</span>
-    <span class="time">{{ currentDateTime.weekday }}</span>
-  </div>
+    <span class="time2">{{ currentDateTime.weekday }}</span>
+  </div></div>
 </template>
 
 <script setup>
@@ -59,5 +60,11 @@ function updateDateTime() {
   font-size: 1.3vw;
   color: yellow;
   font-weight: bold;
+}
+.time2 {
+  font-size: 1.3vw;
+  color: yellow;
+  font-weight: bold;
+  padding-left: 10px;
 }
 </style>

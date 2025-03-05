@@ -31,7 +31,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -73,6 +72,7 @@ const wheelStep = 50; // 每次滚动的步长
 onMounted( async () => {
   await stores.loadExcelData('参访企业.xlsx');
   tableList.value = stores.data; // 将数据赋值给 tableList
+  // console.log(tableList)
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
@@ -202,11 +202,12 @@ const resetHighlight = () => {
   height: 100%;
 }
 .loading_div {
+  position: relative;
   color: #eee;
   width: 100%;
   height: 10%;
-  font-size: 23px;
-  padding: 15px 0 0px 0;
+  font-size: 1.5vw;
+  padding: 0px 0 0px 4px;
   box-sizing: border-box;
 }
 .title_div {
@@ -231,25 +232,25 @@ const resetHighlight = () => {
   box-sizing: border-box;
   padding: 0 5px;
   text-align: center;
-  font-size: 14px;
+  font-size: 10px;
 }
 .tr1 {
   width: 35%;
 }
 .tr2 {
-  width: 10%;
+  width: 15%;
 }
 .tr3 {
   width:25%;
 }
 .tr4 {
-  width: 30%;
+  width: 25%;
 }
 
 .th_style {
   color: rgb(0, 221, 253);
-  font-weight: bold;
-  font-size: 18px;
+  /* font-weight: bold; */
+  font-size: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -270,13 +271,13 @@ const resetHighlight = () => {
 }
 .table_tr {
   display: flex;
-  height: 60px;
-  line-height: 60px;
+  height: 30px;
+  line-height: 30px;
   color: #eee;
   font-size: 25px;
   background: rgba(3, 145, 167, 0.1);
   border: 1px solid rgb(4, 114, 131);
-  margin-top: 7px;
+  margin-top: 0px;
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
 

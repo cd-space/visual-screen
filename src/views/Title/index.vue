@@ -29,7 +29,7 @@ import Time from './components/Time.vue'
   max-width: 60%; 
   max-height: 60%; 
   object-fit: contain; 
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 .title {
     color: white;
@@ -42,9 +42,10 @@ import Time from './components/Time.vue'
     margin-top:9px ;
 }
 .title-text{
-    font-size: 1.8vw;
+    font-size: 1.9vw;
     color: white;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 
