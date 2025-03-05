@@ -33,7 +33,7 @@ export const useCYRSStore = defineStore('xlsx', {
         const worksheet = workbook.Sheets[sheetName];
 
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        console.log("JSON 数据:", jsonData);
+  
 
         // 初始化统计变量
         let total = 0;
@@ -77,10 +77,6 @@ export const useCYRSStore = defineStore('xlsx', {
           ["女生", female],
         ];
         this.CFLCData.source = visitStats;
-
-        console.log("参与人数数据:", this.CYRSData.source);
-        console.log("参访历程数据:", this.CFLCData.source);
-        console.log("企业数量:", this.LJSL);
         
       } catch (error) {
         console.error("加载 Excel 文件失败：", error);

@@ -19,7 +19,6 @@ export default {
     const initChart = () => {
       if (chart.value) {
         myChart = echarts.init(chart.value);
-        //console.log("vue文件数据:", rawData);
 
         const option = {
 
@@ -32,10 +31,11 @@ export default {
           grid: {
             left: 40,
 
-            height: 120,
+            height: 100,
             bottom: 30,
 
           },
+
           xAxis: {
             type: 'category', // 将 x 轴设置为类目轴
             axisLine: {

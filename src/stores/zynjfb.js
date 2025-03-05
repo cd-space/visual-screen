@@ -34,8 +34,6 @@ export const useChartDataStore = defineStore('chartData', {
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-        //console.log("JSON 数据:", jsonData);
-
         // 更新 `studentData`
         this.updateStudentData(jsonData);
 
@@ -103,12 +101,10 @@ export const useChartDataStore = defineStore('chartData', {
         formattedData.push(row);
       });
 
-      // 使用 push 或直接修改数组内容
       this.studentData.source.length = 0;  // 清空数组内容
       this.studentData.source.push(...formattedData);  // 将新的数据推送到数组中
 
-      console.log("专业年级分布 ", this.studentData.source);
-      console.log("毕业意向统计 ", this.byqx.source);
+
     },
   },
 });
