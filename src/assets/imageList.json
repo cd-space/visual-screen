@@ -1,0 +1,39 @@
+{
+    "logos": [
+      {
+        "name": "CJAE",
+        "image": "public/companylogs/cjae.jpg",
+        "link": "https://www.cjae.net"
+      },
+      {
+        "name": "CML",
+        "image": "public/companylogs/cmal.png",
+        "link": "http://www.camsl.com/"
+      },
+      {
+        "name": "Deloitte",
+        "image": "public/companylogs/deloitte.jpg",
+        "link": "https://www2.deloitte.com/cn/zh/pages/about-deloitte/articles/about-deloitte-china.html"
+      },
+      {
+        "name": "Haier",
+        "image": "public/companylogs/haier.jpg",
+        "link": "https://www.haier.com/"
+      },
+      {
+        "name": "OPPO",
+        "image": "public/companylogs/oppo.jpg",
+        "link": "https://www.oppo.com/"
+      },
+      {
+        "name": "Chongqing Range Zhihui Big Data Co., Ltd.",
+        "image": "public/companylogs/chongqing-range-zhihui.jpg",
+        "link": "https://www.cqrzzh.com/"
+      },
+      {
+        "name": "Sinoswiss Technopark",
+        "image": "public/companylogs/sinoswiss-technopark.jpg",
+        "link": "http://www.sinoswisstech.com/"
+      }
+    ]
+  }
