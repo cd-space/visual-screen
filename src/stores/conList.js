@@ -40,6 +40,7 @@ const useConInfoStore = defineStore("conInfo", {
           { index: 1, key: "number" },
           { index: 5, key: "date" },
           { index: 7, key: "link" },
+          { index: 8, key:"id" },
         ]; // 提取指定列的数据，并转换为字典形式
 
         this.data = validRows.map((row) => {
