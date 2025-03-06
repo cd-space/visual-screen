@@ -106,7 +106,7 @@ onMounted(async () => {
   font-size: larger;
   margin-left: 5%;
   color: #eee;
-
+  font-weight:normal;
 
 }
 </style>
