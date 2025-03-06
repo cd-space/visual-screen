@@ -15,7 +15,7 @@ const useConInfoStore = defineStore("conInfo", {
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]]; // 获取第一个工作表 // 从第三行开始读取数据
 
         const range = XLSX.utils.decode_range(firstSheet["!ref"]); // 获取工作表的范围
-        range.s.r = 2; // 设置起始行为第三行（索引从0开始） // 初始化一个空数组来存储有效的行
+        range.s.r = 1; // 设置起始行为第三行（索引从0开始） // 初始化一个空数组来存储有效的行
 
         const validRows = []; // 从第三行开始逐行检查
 
@@ -36,11 +36,11 @@ const useConInfoStore = defineStore("conInfo", {
         } // 指定需要提取的列（索引从0开始），并对应上 key
 
         const columnsToExtract = [
-          { index: 0, key: "company" },
-          { index: 1, key: "number" },
+          { index: 1, key: "company" },
+          { index: 2, key: "number" },
           { index: 5, key: "date" },
           { index: 7, key: "link" },
-          { index: 8, key:"id" },
+          { index: 0, key:"id" },
         ]; // 提取指定列的数据，并转换为字典形式
 
         this.data = validRows.map((row) => {

@@ -72,13 +72,13 @@ const wheelStep = 50; // 每次滚动的步长
 
 // 初始化
 onMounted( async () => {
-  await stores.loadExcelData('参访企业.xlsx');
+  await stores.loadExcelData('参访企业new.xlsx');
   tableList.value = stores.data; // 将数据赋值给 tableList
   // console.log(tableList)
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
-  stores.loadExcelData('参访企业.xlsx');
+  stores.loadExcelData('参访企业new.xlsx');
 
 });
 // 监听 stores.data 的变化
@@ -253,7 +253,7 @@ const resetHighlight = () => {
   color: rgb(0, 221, 253);
   /* font-weight: bold; */
   font-size: 12px;
-  overflow: hidden;       
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
