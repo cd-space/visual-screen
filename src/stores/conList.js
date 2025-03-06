@@ -51,7 +51,7 @@ const useConInfoStore = defineStore("conInfo", {
           return obj;
         }); // 这里你之前的 this.setData 逻辑可能需要根据新的数据结构调整，这里先注释掉 // this.setData = this.data.map(row => new Set(row));
 
-        console.log(this.data);
+        // console.log(this.data);
       } catch (error) {
         console.error("Error loading Excel data:", error);
       }

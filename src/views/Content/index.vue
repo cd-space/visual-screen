@@ -22,7 +22,7 @@ import { ref } from 'vue'
 
     <div class="content">
         <div class="middle">
-            <div style="height: 17%; width: 100%;  box-sizing: border-box;">
+            <div style="height: 17%; width: 100%;  box-sizing: border-box; position: relative; top: 17px;">
                 <ConCar1></ConCar1>
             </div>
             <div
