@@ -19,7 +19,7 @@ export const useCYRSStore = defineStore('xlsx', {
     // 加载并整理数据
     async loadStudentData() {
       try {
-        const response = await fetch('参访企业.xlsx');
+        const response = await fetch('参访企业new.xlsx');
         if (!response.ok) {
           console.error("加载文件失败，状态码:", response.status);
           return;
@@ -44,23 +44,24 @@ export const useCYRSStore = defineStore('xlsx', {
         const visitStats = [["date", "distance"]]; 
 
         // 统计企业数量
-        const enterpriseCount = jsonData.length - 3; // 去掉标题行、表头行和总计行
+        const enterpriseCount = jsonData.length - 1; // 去掉标题行、表头行和总计行
         this.LJSL = [enterpriseCount];
 
         // 遍历每一行数据，从第3行开始到倒数第2行结束
-        for (let i = 2; i < jsonData.length - 1; i++) { 
+        for (let i = 1; i < jsonData.length ; i++) { 
           const row = jsonData[i];
 
           // 确保数据行有效
           if (row.length >= 7) {
             // 处理总人数、男生、女生数据
-            const currentTotal = parseInt(row[1]) || 0;  // 总人数
+           
             const currentMale = parseInt(row[3]) || 0;   // 男生
             const currentFemale = parseInt(row[4]) || 0; // 女生
 
-            total += currentTotal;
+          
             male += currentMale;
             female += currentFemale;
+            total= male+female
 
             // 处理日期和参访里程数据
             const date = row[5]; // 假设日期在第6列

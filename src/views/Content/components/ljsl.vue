@@ -128,7 +128,6 @@ onBeforeUnmount(() => {
   font-size: larger;
   margin-left: 5%;
   color: #eee;
-  font-weight:normal;
 }
 
 .chart {

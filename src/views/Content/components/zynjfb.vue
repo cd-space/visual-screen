@@ -22,7 +22,6 @@ export default {
         myChart = echarts.init(chart.value);
 
         const option = {
-
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -35,17 +34,17 @@ export default {
             itemWidth: 10,
             right: 0,
             top: 0,
-            data: ['2021', '2022', '2023', '2024'],
+            data: ['21', '22', '23', '24'],
             textStyle: {
               color: 'rgba(255, 255, 255, 1)',
             },
-            width: 120
+            width: 100
           },
           grid: {
-
             height: 100,
             bottom: 30,
-
+            left: 35,
+            
           },
           dataset: chartDataStore.studentData,
           xAxis: {
@@ -53,6 +52,10 @@ export default {
             axisLabel: {
               interval: 0, // 每个标签都显示
               color: '#ffffff', // 标签颜色
+              // 格式化 x 轴标签，只显示前 4 个字
+              formatter: function (value) {
+                return value.slice(0, 4);
+              }
             },
             axisLine: {
               show: false, // 隐藏 y 轴轴线
@@ -60,7 +63,6 @@ export default {
             minorSplitLine: {
               show: false, // 隐藏辅助线
             },
-
             axisTick: {
               show: false, // 隐藏 y 轴的数据刻度线
             },
@@ -70,7 +72,6 @@ export default {
                 color: 'rgba(255, 255, 255, 0.2)', // 设置网格线的颜色和透明度
               },
             },
-
           },
           yAxis: {
             type: 'value',
@@ -84,7 +85,6 @@ export default {
             minorSplitLine: {
               show: false, // 隐藏辅助线
             },
-
             axisTick: {
               show: false, // 隐藏 y 轴的数据刻度线
             },
@@ -105,10 +105,10 @@ export default {
             },
           ],
           series: [
-            { type: 'bar', name: '2021', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#004abf' } },
-            { type: 'bar', name: '2022', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#54edd2' } },
-            { type: 'bar', name: '2023', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#56e8bd' } },
-            { type: 'bar', name: '2024', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#152772' } },
+            { type: 'bar', name: '21', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#F9E4A0' } },
+            { type: 'bar', name: '22', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#86C7CC' } },
+            { type: 'bar', name: '23', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#56e8bd' } },
+            { type: 'bar', name: '24', barWidth: 10, barCategoryGap: 10, stack: null, itemStyle: { color: '#E3EAE1' } },
           ],
         };
 
@@ -122,7 +122,7 @@ export default {
     const startAutoScroll = () => {
       let start = 0;
       const step = 10; // 每次滑动的百分比
-      const visibleModules = 30; // 可见范围（覆盖 3 个模块的百分比）
+      const visibleModules = 20; // 可见范围（覆盖 3 个模块的百分比）
       const total = 100;
 
       timer = setInterval(() => {
@@ -157,8 +157,6 @@ export default {
       window.addEventListener('resize', resizeChart);
     });
 
-
-
     return {
       chart,
     };
@@ -172,6 +170,5 @@ export default {
   font-size: larger;
   margin-left: 5%;
   color: #eee;
-  font-weight:normal;
 }
 </style>

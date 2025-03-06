@@ -31,7 +31,7 @@ export default {
           grid: {
             height: 100,
             bottom: 30,
-            left: 30,
+            left: 35,
             right: 20,
           },
           xAxis: {
@@ -70,9 +70,7 @@ export default {
             minorSplitLine: {
               show: false, // 隐藏辅助线
             },
-            formatter: function (value) {
-                return value + 'km';
-              },
+
             axisTick: {
               show: false, // 隐藏 y 轴的数据刻度线
             },
@@ -187,6 +185,5 @@ export default {
   font-size: larger;
   margin-left: 5%;
   color: #eee;
-  font-weight:normal;
 }
 </style>

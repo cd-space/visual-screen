@@ -91,8 +91,16 @@ onMounted(async () => {
 
 // 监听 stores.data 的变化
 watch(() => stores.data, (newData) => {
-  tableList.value = newData;
-  tableActionFun();
+  tableList.value = [...newData]; // 注意拷贝一下，防止引用异常
+  tableListSize.value = tableList.value.length;
+
+  if (tableListSize.value > visibleSize) {
+    tableList.value = [...tableList.value, ...tableList.value]; // 复制数据用于无缝滚动
+  }
+
+  calculateMinTop(); // 重新计算最小滚动高度
+  tableTop.value = 0; // 重置滚动位置
+  tableActionFun(); // 重启滚动
 });
 
 
@@ -197,7 +205,8 @@ const handleWheel = (event) => {
 };
 // 计算最小 top 值
 const calculateMinTop = () => {
-  const containerHeight = 294; // 对应.table_main_body的高度
+  const container = document.querySelector('.table_main_body');
+  const containerHeight = container ? container.clientHeight : 294;
   const contentHeight = lineHeight * tableList.value.length;
   minTop.value = containerHeight - contentHeight;
 };

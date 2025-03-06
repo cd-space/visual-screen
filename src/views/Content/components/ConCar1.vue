@@ -4,7 +4,7 @@
   v-if="badges.length"
   ref="marquee"
   :repeat="repeatTimes"
-  :duration="5"
+  :duration="10"
   :paused="paused"
 >
   <a

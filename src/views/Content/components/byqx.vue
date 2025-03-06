@@ -55,18 +55,28 @@ onMounted(async () => {
           show: true, // 显示标签
           position: 'outside', // 标签位置设置为扇形外部
           color: '#eee',
+          formatter: (params) => {
+  // 直接从 byqxData 获取所有数据
+  const total = byqxData.reduce((sum, item) => sum + item.value, 0);
+  // 计算百分比
+  const percentage = ((params.value / total) * 100).toFixed(2);
+  return  `${params.name}\n${percentage}%`; // 返回包含百分比的标签内容
+}
+
         },
         emphasis: {
           label: {
             show: true,
             fontSize: 20,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            
           }
         },
+        
         labelLine: {
           show: true, // 显示提示线
-          length: 20, // 第一段长度
-          length2: 15, // 第二段长度
+          length: 5, // 第一段长度
+          length2: 5, // 第二段长度
           smooth: true, // 平滑提示线
           lineStyle: {
             color: '#999', // 提示线颜色
@@ -106,7 +116,7 @@ onMounted(async () => {
   font-size: larger;
   margin-left: 5%;
   color: #eee;
-  font-weight:normal;
+
 
 }
 </style>

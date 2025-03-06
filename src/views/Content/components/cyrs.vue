@@ -31,8 +31,9 @@ export default {
           grid: {
             left: 45,
             right: 30,
-            height: "100%",
+            height: "70%",
             bottom: 30,
+
 
           },
 
@@ -133,6 +134,5 @@ export default {
   font-size: larger;
   margin-left: 5%;
   color: #eee;
-  font-weight:normal;
 }
 </style>

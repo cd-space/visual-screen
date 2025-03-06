@@ -5,7 +5,7 @@ export const useChartDataStore = defineStore('chartData', {
   state: () => ({
     studentData: {
       source: [
-        ['zy', '2021', '2022', '2023', '2024'],
+        ['zy', '21', '22', '23', '24'],
         [] // 初始为空，后面根据专业和年级填充数据
       ],
     },
@@ -13,14 +13,14 @@ export const useChartDataStore = defineStore('chartData', {
       source: [
         { value: 0, name: '就业' },
         { value: 0, name: '考研' },    
+        { value: 0, name: '考公' },    
       ]
     }
   }),
   actions: {
-
     async loadStudentData() {
       try {
-        const response = await fetch('学生第二期.xlsx');
+        const response = await fetch('千名学子进百企(积分排行榜).xlsx');
         if (!response.ok) {
           console.error("加载文件失败，状态码:", response.status);
           return;
@@ -34,7 +34,7 @@ export const useChartDataStore = defineStore('chartData', {
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-        //console.log("JSON 数据:", jsonData);
+        console.log("JSON 数据:", jsonData);
 
         // 更新 `studentData`
         this.updateStudentData(jsonData);
@@ -46,37 +46,34 @@ export const useChartDataStore = defineStore('chartData', {
 
     updateStudentData(data) {
       const result = {};
-      const byqx = { 就业: 0, 考研: 0 }; // 初始化毕业意向统计对象
+      const byqx = { 就业: 0, 考研: 0, 考公: 0 }; // 初始化毕业意向统计对象
 
-      // 遍历数据，跳过前两行标题和说明
-      for (let i = 2; i < data.length; i++) {
+      // 遍历数据，跳过标题行
+      for (let i = 1; i < data.length; i++) {
         const row = data[i];
-        if (!row || row.length < 10 || !row[5] || !row[6]) {
+        if (!row || row.length < 9) {
           console.warn(`无效行数据 (第 ${i + 1} 行):`, row);
           continue;
         }
 
-        let major = row[5].trim(); // 专业
-        let year = row[6].replace('级', '').trim(); // 年级
-        // 使用正则表达式提取年级数字部分
-        const match = year.match(/\d+/); // 匹配数字部分
-        if (match) {
-          year = match[0]; // 获取匹配的数字部分
-        }
+        let major = row[4].trim(); // 专业
+        let year = row[7].trim(); // 年级
 
         if (!result[major]) {
-          result[major] = { '2021': 0, '2022': 0, '2023': 0, '2024': 0 };
+          result[major] = { '21': 0, '22': 0, '23': 0, '24': 0 };
         }
 
-        if (result[major][year] !== undefined) {
+        if (result[major][year]) {
           result[major][year] += 1;
+        } else if (['21', '22', '23', '24'].includes(year)) {
+          result[major][year] = 1;
         } else {
-          console.warn(`无效年级数据 (第 ${i + 1} 行):`, year);
+          console.warn(`无效年级数据 `);
         }
 
         // 统计毕业意向
-        const graduationIntention = row[9]?.trim(); // 假设毕业意向在第9列
-        if (graduationIntention && byqx.hasOwnProperty(graduationIntention)) {
+        const graduationIntention = row[8]?.trim(); // 假设毕业意向在第8列
+        if (graduationIntention && (graduationIntention === '就业' || graduationIntention === '考研' || graduationIntention === '考公')) {
           byqx[graduationIntention] += 1;
         }
       }
@@ -91,14 +88,14 @@ export const useChartDataStore = defineStore('chartData', {
       this.byqx.source = byqxFormatted;
 
       // 转换为目标格式
-      const formattedData = [['zy', '2021', '2022', '2023', '2024']];
+      const formattedData = [['zy', '21', '22', '23', '24']];
       Object.keys(result).forEach((major) => {
         const row = [
           major,
-          result[major]['2021'] || 0,
-          result[major]['2022'] || 0,
-          result[major]['2023'] || 0,
-          result[major]['2024'] || 0,
+          result[major]['21'] || 0,
+          result[major]['22'] || 0,
+          result[major]['23'] || 0,
+          result[major]['24'] || 0,
         ];
         formattedData.push(row);
       });
@@ -106,7 +103,6 @@ export const useChartDataStore = defineStore('chartData', {
       // 使用 push 或直接修改数组内容
       this.studentData.source.length = 0;  // 清空数组内容
       this.studentData.source.push(...formattedData);  // 将新的数据推送到数组中
-
     },
   },
 });
