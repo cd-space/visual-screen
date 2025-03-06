@@ -80,12 +80,12 @@ const wheelStep = 50; // 每次滚动的步长
 
 // 初始化
 onMounted(async () => {
-  await stores.loadExcelData('学生第二期.xlsx');
+  await stores.loadExcelData('千名学子进百企(积分排行榜).xlsx');
   tableList.value = stores.data;
   bsGetProductProcess();
   componentTimerFun();
   calculateMinTop();
-  stores.loadExcelData('学生第二期.xlsx');
+  stores.loadExcelData('千名学子进百企(积分排行榜).xlsx');
 
 });
 

@@ -37,12 +37,12 @@ const useUserInfoStore = defineStore("userInfo", {
 
         const columnsToExtract = [
           { index: 0, key: "id" },
-          { index: 2, key: "name" },
-          { index: 3, key: "sex" },
-          { index: 6, key: "grade" },
-          { index: 5, key: "major" },
-          { index: 12, key: "company" },
-          { index: 13, key: "score" },
+          { index: 1, key: "name" },
+          { index: 2, key: "sex" },
+          { index: 7, key: "grade" },
+          { index: 4, key: "major" },
+          { index: 5, key: "company" },
+          { index: 6, key: "score" },
         ]; // 提取指定列的数据，并转换为字典形式
 
         this.data = validRows.map((row) => {
