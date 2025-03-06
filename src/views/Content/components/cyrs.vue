@@ -29,9 +29,9 @@ export default {
             },
           },
           grid: {
-            left: 40,
-
-            height: 100,
+            left: 45,
+            right: 30,
+            height: "100%",
             bottom: 30,
 
           },
@@ -131,8 +131,7 @@ export default {
 .byqx {
   float: left;
   font-size: larger;
-  font-weight: bolder;
-  color: rgb(255, 255, 255);
   margin-left: 5%;
+  color: #eee;
 }
 </style>

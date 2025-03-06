@@ -9,6 +9,7 @@
       <div class="table_body">
         <div class="table_th">
           <div class="tr1 th_style">单位</div>
+          <div class="tr1 th_style">单位</div>
           <div class="tr2 th_style">人数</div>
           <div class="tr3 th_style">日期</div>
           <div class="tr4 th_style">新闻链接</div>
@@ -22,6 +23,7 @@
           <div class="table_inner_body" :style="{ top: tableTop + 'px' }">
             <div class="table_tr" v-for="(item, index) in tableList" :key="index" @mouseenter="highlightRow(index)"
               @mouseleave="resetHighlight" :class="{ highlighted: index === highlightedIndex }">
+              <div class="tr1 tr">{{ item.company }}</div>
               <div class="tr1 tr">{{ item.company }}</div>
               <div class="tr2 tr">{{ item.number }}</div>
               <div class="tr3 tr">{{ item.date }}</div>
@@ -235,7 +237,7 @@ const resetHighlight = () => {
   font-size: 10px;
 }
 .tr1 {
-  width: 35%;
+  width: 17.5%;
 }
 .tr2 {
   width: 15%;
@@ -251,7 +253,7 @@ const resetHighlight = () => {
   color: rgb(0, 221, 253);
   /* font-weight: bold; */
   font-size: 12px;
-  overflow: hidden;
+  overflow: hidden;       
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;

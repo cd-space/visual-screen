@@ -51,12 +51,49 @@ export default {
           xAxis: {
             type: 'category',
             axisLabel: {
-              interval: 0,
-
+              interval: 0, // 每个标签都显示
+              color: '#ffffff', // 标签颜色
             },
+            axisLine: {
+              show: false, // 隐藏 y 轴轴线
+            },
+            minorSplitLine: {
+              show: false, // 隐藏辅助线
+            },
+
+            axisTick: {
+              show: false, // 隐藏 y 轴的数据刻度线
+            },
+            splitLine: {
+              show: false, // 显示网格线（刻度线之间的线条）
+              lineStyle: {
+                color: 'rgba(255, 255, 255, 0.2)', // 设置网格线的颜色和透明度
+              },
+            },
+
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              interval: 0, // 每个标签都显示
+              color: '#ffffff', // 标签颜色
+            },
+            axisLine: {
+              show: false, // 隐藏 y 轴轴线
+            },
+            minorSplitLine: {
+              show: false, // 隐藏辅助线
+            },
+
+            axisTick: {
+              show: false, // 隐藏 y 轴的数据刻度线
+            },
+            splitLine: {
+              show: true, // 显示网格线（刻度线之间的线条）
+              lineStyle: {
+                color: 'rgba(255, 255, 255, 0.2)', // 设置网格线的颜色和透明度
+              },
+            },
           },
           dataZoom: [
             {
@@ -133,8 +170,7 @@ export default {
 .byqx {
   float: left;
   font-size: larger;
-  font-weight: bolder;
-  color: rgb(255, 255, 255);
   margin-left: 5%;
+  color: #eee;
 }
 </style>

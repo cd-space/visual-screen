@@ -15,12 +15,14 @@ const chart = ref(null);
 let myChart = null;
 const excelStore = useCYRSStore();
 
-const initChart = (value) => {
+const initChart = (targetValue) => {
   if (chart.value) {
     myChart = echarts.init(chart.value);
+    let currentValue = 0; // 初始值设为 0
+
     const option = {
       title: {
-        text: `${value}个`, // 显示数值
+        text: `${currentValue}个`, // 初始显示 0
         textStyle: {
           fontSize: 20,
           fontFamily: 'Microsoft Yahei',
@@ -76,7 +78,19 @@ const initChart = (value) => {
         },
       ],
     };
+
     myChart.setOption(option);
+
+    // 使用定时器逐步增加数值
+    const intervalId = setInterval(() => {
+      if (currentValue < targetValue) {
+        currentValue++;
+        option.title.text = `${currentValue}个`;
+        myChart.setOption(option);
+      } else {
+        clearInterval(intervalId); // 达到目标值后清除定时器
+      }
+    }, 100); // 每 100 毫秒更新一次
   }
 };
 
@@ -112,9 +126,8 @@ onBeforeUnmount(() => {
 .title {
   float: left;
   font-size: larger;
-  font-weight: bolder;
-  color: rgb(255, 255, 255);
   margin-left: 5%;
+  color: #eee;
 }
 
 .chart {
