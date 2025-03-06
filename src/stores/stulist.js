@@ -39,7 +39,7 @@ const useUserInfoStore = defineStore("userInfo", {
           { index: 0, key: "id" },
           { index: 1, key: "name" },
           { index: 2, key: "sex" },
-          { index: 3, key: "grade" },
+          { index: 7, key: "grade" },
           { index: 4, key: "major" },
           { index: 5, key: "company" },
           { index: 6, key: "score" },
