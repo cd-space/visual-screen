@@ -1,6 +1,9 @@
 # visual-screen
 
 This template should help get you started developing with Vue 3 in Vite.
+## 项目效果图
+
+![首页效果图](https://github.com/cd-space/visual-screen/blob/acfc40a1d3296b4c5148a4740ade79632d306364/src/assets/1.png)
 
 ## Recommended IDE Setup
 
